@@ -1,0 +1,1548 @@
+sudo docker ps
+CONTAINER ID   IMAGE                  COMMAND                  CREATED          STATUS          PORTS     NAMES
+dd74b0ae978d   frrouting/frr:latest   "/sbin/tini -- /usr/…"   16 minutes ago   Up 16 minutes             clab-frrlab1_1-PC2
+88459c5274c6   frrouting/frr:latest   "/sbin/tini -- /usr/…"   16 minutes ago   Up 16 minutes             clab-frrlab1_1-PC1
+9a1446b4ffd9   frrouting/frr:latest   "/sbin/tini -- /usr/…"   16 minutes ago   Up 16 minutes             clab-frrlab1_1-router3
+effcc98aee5e   frrouting/frr:latest   "/sbin/tini -- /usr/…"   16 minutes ago   Up 16 minutes             clab-frrlab1_1-router1
+82ca58720210   frrouting/frr:latest   "/sbin/tini -- /usr/…"   16 minutes ago   Up 16 minutes             clab-frrlab1_1-router2
+21feae63d812   frrouting/frr:latest   "/sbin/tini -- /usr/…"   16 minutes ago   Up 16 minutes             clab-frrlab1_1-PC3
+
+
+sudo docker exec -it clab-frrlab1_1-router1 vtysh -c "sh run"
+% Can't open configuration file /etc/frr/vtysh.conf due to 'No such file or directory'.
+Building configuration...
+
+Current configuration:
+!
+frr version 8.4_git
+frr defaults traditional
+hostname router1
+no ipv6 forwarding
+!
+interface eth1
+ ip address 192.168.1.1/24
+ ip router isis 1
+ isis circuit-type level-2-only
+ isis network point-to-point
+exit
+!
+interface eth2
+ ip address 192.168.2.1/24
+ ip router isis 1
+ isis circuit-type level-2-only
+ isis network point-to-point
+exit
+!
+interface eth3
+ ip address 192.168.11.1/24
+ ip router isis 1
+ isis circuit-type level-2-only
+ isis network point-to-point
+exit
+!
+interface lo
+ ip address 10.10.10.1/32
+ ip router isis 1
+ isis passive
+exit
+!
+router isis 1
+ is-type level-2-only
+ net 49.0001.1000.0000.1001.00
+exit
+!
+end
+
+
+sudo docker exec -it clab-frrlab1_1-router1 vtysh -c "sh ip route"
+% Can't open configuration file /etc/frr/vtysh.conf due to 'No such file or directory'.
+Codes: K - kernel route, C - connected, S - static, R - RIP,
+       O - OSPF, I - IS-IS, B - BGP, E - EIGRP, N - NHRP,
+       T - Table, v - VNC, V - VNC-Direct, A - Babel, F - PBR,
+       f - OpenFabric,
+       > - selected route, * - FIB route, q - queued, r - rejected, b - backup
+       t - trapped, o - offload failure
+
+K>* 0.0.0.0/0 [0/0] via 172.20.20.1, eth0, 00:16:38
+C>* 10.10.10.1/32 is directly connected, lo, 00:16:33
+I>* 10.10.10.2/32 [115/20] via 192.168.1.2, eth1, weight 1, 00:16:01
+I>* 10.10.10.3/32 [115/20] via 192.168.2.3, eth2, weight 1, 00:16:01
+C>* 172.20.20.0/24 is directly connected, eth0, 00:16:38
+I   192.168.1.0/24 [115/20] via 192.168.1.2, eth1 inactive, weight 1, 00:16:01
+C>* 192.168.1.0/24 is directly connected, eth1, 00:16:33
+I   192.168.2.0/24 [115/20] via 192.168.2.3, eth2 inactive, weight 1, 00:16:01
+C>* 192.168.2.0/24 is directly connected, eth2, 00:16:33
+I>* 192.168.3.0/24 [115/20] via 192.168.1.2, eth1, weight 1, 00:16:01
+  *                         via 192.168.2.3, eth2, weight 1, 00:16:01
+I   192.168.11.0/24 [115/20] via 192.168.11.4, eth3 inactive, weight 1, 00:16:01
+C>* 192.168.11.0/24 is directly connected, eth3, 00:16:33
+I>* 192.168.22.0/24 [115/20] via 192.168.1.2, eth1, weight 1, 00:16:01
+I>* 192.168.33.0/24 [115/20] via 192.168.2.3, eth2, weight 1, 00:16:01
+
+
+sudo docker exec -it clab-frrlab1_1-router1 bash -c "ping 10.10.10.2 -c 3"
+PING 10.10.10.2 (10.10.10.2): 56 data bytes
+64 bytes from 10.10.10.2: seq=0 ttl=64 time=0.071 ms
+64 bytes from 10.10.10.2: seq=1 ttl=64 time=0.060 ms
+64 bytes from 10.10.10.2: seq=2 ttl=64 time=0.061 ms
+
+--- 10.10.10.2 ping statistics ---
+3 packets transmitted, 3 packets received, 0% packet loss
+round-trip min/avg/max = 0.060/0.064/0.071 ms
+
+sudo docker exec -it clab-frrlab1_1-router1 bash -c "ping 10.10.10.3 -c 3"
+PING 10.10.10.3 (10.10.10.3): 56 data bytes
+64 bytes from 10.10.10.3: seq=0 ttl=64 time=0.068 ms
+64 bytes from 10.10.10.3: seq=1 ttl=64 time=0.061 ms
+64 bytes from 10.10.10.3: seq=2 ttl=64 time=0.061 ms
+
+--- 10.10.10.3 ping statistics ---
+3 packets transmitted, 3 packets received, 0% packet loss
+round-trip min/avg/max = 0.061/0.063/0.068 ms
+
+
+
+
+sudo docker exec -it clab-frrlab1_1-router1 bash -c "traceroute 10.10.10.2"
+traceroute to 10.10.10.2 (10.10.10.2), 30 hops max, 46 byte packets
+ 1  10.10.10.2 (10.10.10.2)  0.005 ms  0.003 ms  0.005 ms
+
+sudo docker exec -it clab-frrlab1_1-router1 bash -c "traceroute 10.10.10.3"
+traceroute to 10.10.10.3 (10.10.10.3), 30 hops max, 46 byte packets
+ 1  10.10.10.3 (10.10.10.3)  0.004 ms  0.004 ms  0.003 ms
+
+
+
+
+sudo docker exec -it clab-frrlab1_1-router1 vtysh -c "show interface brief" -c "show interface"
+% Can't open configuration file /etc/frr/vtysh.conf due to 'No such file or directory'.
+Interface       Status  VRF             Addresses
+---------       ------  ---             ---------
+eth0            up      default         172.20.20.5/24
+                                        + 2001:172:20:20::5/64
+eth1            up      default         192.168.1.1/24
+eth2            up      default         192.168.2.1/24
+eth3            up      default         192.168.11.1/24
+lo              up      default         10.10.10.1/32
+
+Interface eth0 is up, line protocol is up
+  Link ups:       1    last: 2024/03/16 14:10:22.79
+  Link downs:     0    last: (never)
+  vrf: default
+  index 136 metric 0 mtu 1500 speed 10000 
+  flags: <UP,BROADCAST,RUNNING,MULTICAST>
+  Type: Ethernet
+  HWaddr: 02:42:ac:14:14:05
+  inet 172.20.20.5/24
+  inet6 2001:172:20:20::5/64
+  inet6 fe80::42:acff:fe14:1405/64
+  Interface Type VETH
+  Interface Slave Type None
+  protodown: off 
+  Parent ifindex: 137
+Interface eth1 is up, line protocol is up
+  Link ups:       2    last: 2024/03/16 14:10:23.00
+  Link downs:     1    last: 2024/03/16 14:10:22.87
+  vrf: default
+  index 151 metric 0 mtu 9500 speed 10000 
+  flags: <UP,BROADCAST,RUNNING,MULTICAST>
+  Type: Ethernet
+  HWaddr: aa:c1:ab:38:ba:4f
+  inet 192.168.1.1/24
+  inet6 fe80::a8c1:abff:fe38:ba4f/64
+  Interface Type VETH
+  Interface Slave Type None
+  protodown: off 
+Interface eth2 is up, line protocol is up
+  Link ups:       2    last: 2024/03/16 14:10:22.57
+  Link downs:     1    last: 2024/03/16 14:10:22.50
+  vrf: default
+  index 145 metric 0 mtu 9500 speed 10000 
+  flags: <UP,BROADCAST,RUNNING,MULTICAST>
+  Type: Ethernet
+  HWaddr: aa:c1:ab:0b:86:8b
+  inet 192.168.2.1/24
+  inet6 fe80::a8c1:abff:fe0b:868b/64
+  Interface Type VETH
+  Interface Slave Type None
+  protodown: off 
+Interface eth3 is up, line protocol is up
+  Link ups:       2    last: 2024/03/16 14:10:22.79
+  Link downs:     1    last: 2024/03/16 14:10:22.79
+  vrf: default
+  index 146 metric 0 mtu 9500 speed 10000 
+  flags: <UP,BROADCAST,RUNNING,MULTICAST>
+  Type: Ethernet
+  HWaddr: aa:c1:ab:4a:24:2d
+  inet 192.168.11.1/24
+  inet6 fe80::a8c1:abff:fe4a:242d/64
+  Interface Type VETH
+  Interface Slave Type None
+  protodown: off 
+Interface lo is up, line protocol is up
+  Link ups:       0    last: (never)
+  Link downs:     0    last: (never)
+  vrf: default
+  index 1 metric 0 mtu 65536 speed 0 
+  flags: <UP,LOOPBACK,RUNNING>
+  Type: Loopback
+  inet 10.10.10.1/32
+  Interface Type Other
+  Interface Slave Type None
+  protodown: off
+
+
+sudo docker exec -it clab-frrlab1_1-router1 vtysh -c "show isis database" -c "show isis database detail"
+% Can't open configuration file /etc/frr/vtysh.conf due to 'No such file or directory'.
+Area 1:
+IS-IS Level-2 link-state database:
+LSP ID                  PduLen  SeqNumber   Chksum  Holdtime  ATT/P/OL
+PC1.00-00                  83   0x00000003  0xa17d    1062    0/0/0
+router1.00-00        *    134   0x00000003  0xf4da    1037    0/0/0
+router2.00-00             134   0x00000003  0xceae    1060    0/0/0
+PC2.00-00                  83   0x00000003  0x5e33    1044    0/0/0
+router3.00-00             134   0x00000003  0xa7a3    1087    0/0/0
+PC3.00-00                  83   0x00000003  0xa082    1093    0/0/0
+    6 LSPs
+
+Area 1:
+IS-IS Level-2 link-state database:
+LSP ID                  PduLen  SeqNumber   Chksum  Holdtime  ATT/P/OL
+PC1.00-00                  83   0x00000003  0xa17d    1062    0/0/0
+  Protocols Supported: IPv4
+  Area Address: 49.0001
+  Hostname: PC1
+  TE Router ID: 192.168.11.4
+  Router Capability: 192.168.11.4 , D:0, S:0
+  Extended Reachability: 1000.0000.1001.00 (Metric: 10)
+  IPv4 Interface Address: 192.168.11.4
+  Extended IP Reachability: 192.168.11.0/24 (Metric: 10)
+
+router1.00-00        *    134   0x00000003  0xf4da    1037    0/0/0
+  Protocols Supported: IPv4
+  Area Address: 49.0001
+  Hostname: router1
+  TE Router ID: 10.10.10.1
+  Router Capability: 10.10.10.1 , D:0, S:0
+  Extended Reachability: 2000.0000.2000.00 (Metric: 10)
+  Extended Reachability: 3000.0000.3000.00 (Metric: 10)
+  Extended Reachability: 0000.0000.0001.00 (Metric: 10)
+  IPv4 Interface Address: 10.10.10.1
+  Extended IP Reachability: 192.168.1.0/24 (Metric: 10)
+  Extended IP Reachability: 192.168.2.0/24 (Metric: 10)
+  Extended IP Reachability: 192.168.11.0/24 (Metric: 10)
+  Extended IP Reachability: 10.10.10.1/32 (Metric: 10)
+
+router2.00-00             134   0x00000003  0xceae    1060    0/0/0
+  Protocols Supported: IPv4
+  Area Address: 49.0001
+  Hostname: router2
+  TE Router ID: 10.10.10.2
+  Router Capability: 10.10.10.2 , D:0, S:0
+  Extended Reachability: 1000.0000.1001.00 (Metric: 10)
+  Extended Reachability: 3000.0000.3000.00 (Metric: 10)
+  Extended Reachability: 2000.0000.2002.00 (Metric: 10)
+  IPv4 Interface Address: 10.10.10.2
+  Extended IP Reachability: 192.168.1.0/24 (Metric: 10)
+  Extended IP Reachability: 192.168.3.0/24 (Metric: 10)
+  Extended IP Reachability: 192.168.22.0/24 (Metric: 10)
+  Extended IP Reachability: 10.10.10.2/32 (Metric: 10)
+
+PC2.00-00                  83   0x00000003  0x5e33    1044    0/0/0
+  Protocols Supported: IPv4
+  Area Address: 49.0001
+  Hostname: PC2
+  TE Router ID: 192.168.22.4
+  Router Capability: 192.168.22.4 , D:0, S:0
+  Extended Reachability: 2000.0000.2000.00 (Metric: 10)
+  IPv4 Interface Address: 192.168.22.4
+  Extended IP Reachability: 192.168.22.0/24 (Metric: 10)
+
+router3.00-00             134   0x00000003  0xa7a3    1087    0/0/0
+  Protocols Supported: IPv4
+  Area Address: 49.0001
+  Hostname: router3
+  TE Router ID: 10.10.10.3
+  Router Capability: 10.10.10.3 , D:0, S:0
+  Extended Reachability: 1000.0000.1001.00 (Metric: 10)
+  Extended Reachability: 2000.0000.2000.00 (Metric: 10)
+  Extended Reachability: 3000.0000.3003.00 (Metric: 10)
+  IPv4 Interface Address: 10.10.10.3
+  Extended IP Reachability: 192.168.2.0/24 (Metric: 10)
+  Extended IP Reachability: 192.168.3.0/24 (Metric: 10)
+  Extended IP Reachability: 192.168.33.0/24 (Metric: 10)
+  Extended IP Reachability: 10.10.10.3/32 (Metric: 10)
+
+PC3.00-00                  83   0x00000003  0xa082    1093    0/0/0
+  Protocols Supported: IPv4
+  Area Address: 49.0001
+  Hostname: PC3
+  TE Router ID: 192.168.33.4
+  Router Capability: 192.168.33.4 , D:0, S:0
+  Extended Reachability: 3000.0000.3000.00 (Metric: 10)
+  IPv4 Interface Address: 192.168.33.4
+  Extended IP Reachability: 192.168.33.0/24 (Metric: 10)
+
+    6 LSPs
+
+
+sudo docker exec -it clab-frrlab1_1-router2 vtysh -c "sh run"
+% Can't open configuration file /etc/frr/vtysh.conf due to 'No such file or directory'.
+Building configuration...
+
+Current configuration:
+!
+frr version 8.4_git
+frr defaults traditional
+hostname router2
+no ipv6 forwarding
+!
+interface eth1
+ ip address 192.168.1.2/24
+ ip router isis 1
+ isis circuit-type level-2-only
+ isis network point-to-point
+exit
+!
+interface eth2
+ ip address 192.168.3.2/24
+ ip router isis 1
+ isis circuit-type level-2-only
+ isis network point-to-point
+exit
+!
+interface eth3
+ ip address 192.168.22.2/24
+ ip router isis 1
+ isis circuit-type level-2-only
+ isis network point-to-point
+exit
+!
+interface lo
+ ip address 10.10.10.2/32
+ ip router isis 1
+ isis passive
+exit
+!
+router isis 1
+ is-type level-2-only
+ net 49.0001.2000.0000.2000.00
+exit
+!
+end
+
+
+sudo docker exec -it clab-frrlab1_1-router2 vtysh -c "sh ip route"
+% Can't open configuration file /etc/frr/vtysh.conf due to 'No such file or directory'.
+Codes: K - kernel route, C - connected, S - static, R - RIP,
+       O - OSPF, I - IS-IS, B - BGP, E - EIGRP, N - NHRP,
+       T - Table, v - VNC, V - VNC-Direct, A - Babel, F - PBR,
+       f - OpenFabric,
+       > - selected route, * - FIB route, q - queued, r - rejected, b - backup
+       t - trapped, o - offload failure
+
+K>* 0.0.0.0/0 [0/0] via 172.20.20.1, eth0, 00:16:41
+I>* 10.10.10.1/32 [115/20] via 192.168.1.1, eth1, weight 1, 00:16:05
+C>* 10.10.10.2/32 is directly connected, lo, 00:16:37
+I>* 10.10.10.3/32 [115/20] via 192.168.3.3, eth2, weight 1, 00:16:05
+C>* 172.20.20.0/24 is directly connected, eth0, 00:16:41
+I   192.168.1.0/24 [115/20] via 192.168.1.1, eth1 inactive, weight 1, 00:16:05
+C>* 192.168.1.0/24 is directly connected, eth1, 00:16:37
+I>* 192.168.2.0/24 [115/20] via 192.168.1.1, eth1, weight 1, 00:16:05
+  *                         via 192.168.3.3, eth2, weight 1, 00:16:05
+I   192.168.3.0/24 [115/20] via 192.168.3.3, eth2 inactive, weight 1, 00:16:05
+C>* 192.168.3.0/24 is directly connected, eth2, 00:16:37
+I>* 192.168.11.0/24 [115/20] via 192.168.1.1, eth1, weight 1, 00:16:05
+I   192.168.22.0/24 [115/20] via 192.168.22.4, eth3 inactive, weight 1, 00:16:05
+C>* 192.168.22.0/24 is directly connected, eth3, 00:16:37
+I>* 192.168.33.0/24 [115/20] via 192.168.3.3, eth2, weight 1, 00:16:05
+
+
+sudo docker exec -it clab-frrlab1_1-router2 bash -c "ping 10.10.10.1 -c 3"
+PING 10.10.10.1 (10.10.10.1): 56 data bytes
+64 bytes from 10.10.10.1: seq=0 ttl=64 time=0.065 ms
+64 bytes from 10.10.10.1: seq=1 ttl=64 time=0.056 ms
+64 bytes from 10.10.10.1: seq=2 ttl=64 time=0.057 ms
+
+--- 10.10.10.1 ping statistics ---
+3 packets transmitted, 3 packets received, 0% packet loss
+round-trip min/avg/max = 0.056/0.059/0.065 ms
+
+sudo docker exec -it clab-frrlab1_1-router2 bash -c "ping 10.10.10.3 -c 3"
+PING 10.10.10.3 (10.10.10.3): 56 data bytes
+64 bytes from 10.10.10.3: seq=0 ttl=64 time=0.067 ms
+64 bytes from 10.10.10.3: seq=1 ttl=64 time=0.056 ms
+64 bytes from 10.10.10.3: seq=2 ttl=64 time=0.047 ms
+
+--- 10.10.10.3 ping statistics ---
+3 packets transmitted, 3 packets received, 0% packet loss
+round-trip min/avg/max = 0.047/0.056/0.067 ms
+
+
+
+
+sudo docker exec -it clab-frrlab1_1-router2 bash -c "traceroute 10.10.10.1"
+traceroute to 10.10.10.1 (10.10.10.1), 30 hops max, 46 byte packets
+ 1  10.10.10.1 (10.10.10.1)  0.004 ms  0.003 ms  0.002 ms
+
+sudo docker exec -it clab-frrlab1_1-router2 bash -c "traceroute 10.10.10.3"
+traceroute to 10.10.10.3 (10.10.10.3), 30 hops max, 46 byte packets
+ 1  10.10.10.3 (10.10.10.3)  0.005 ms  0.004 ms  0.002 ms
+
+
+
+
+sudo docker exec -it clab-frrlab1_1-router2 vtysh -c "show interface brief" -c "show interface"
+% Can't open configuration file /etc/frr/vtysh.conf due to 'No such file or directory'.
+Interface       Status  VRF             Addresses
+---------       ------  ---             ---------
+eth0            up      default         172.20.20.6/24
+                                        + 2001:172:20:20::6/64
+eth1            up      default         192.168.1.2/24
+eth2            up      default         192.168.3.2/24
+eth3            up      default         192.168.22.2/24
+lo              up      default         10.10.10.2/32
+
+Interface eth0 is up, line protocol is up
+  Link ups:       1    last: 2024/03/16 14:10:23.16
+  Link downs:     0    last: (never)
+  vrf: default
+  index 138 metric 0 mtu 1500 speed 10000 
+  flags: <UP,BROADCAST,RUNNING,MULTICAST>
+  Type: Ethernet
+  HWaddr: 02:42:ac:14:14:06
+  inet 172.20.20.6/24
+  inet6 2001:172:20:20::6/64
+  inet6 fe80::42:acff:fe14:1406/64
+  Interface Type VETH
+  Interface Slave Type None
+  protodown: off 
+  Parent ifindex: 139
+Interface eth1 is up, line protocol is up
+  Link ups:       2    last: 2024/03/16 14:10:23.16
+  Link downs:     1    last: 2024/03/16 14:10:23.16
+  vrf: default
+  index 150 metric 0 mtu 9500 speed 10000 
+  flags: <UP,BROADCAST,RUNNING,MULTICAST>
+  Type: Ethernet
+  HWaddr: aa:c1:ab:f4:d9:63
+  inet 192.168.1.2/24
+  inet6 fe80::a8c1:abff:fef4:d963/64
+  Interface Type VETH
+  Interface Slave Type None
+  protodown: off 
+Interface eth2 is up, line protocol is up
+  Link ups:       2    last: 2024/03/16 14:10:23.16
+  Link downs:     1    last: 2024/03/16 14:10:23.16
+  vrf: default
+  index 153 metric 0 mtu 9500 speed 10000 
+  flags: <UP,BROADCAST,RUNNING,MULTICAST>
+  Type: Ethernet
+  HWaddr: aa:c1:ab:5b:96:96
+  inet 192.168.3.2/24
+  inet6 fe80::a8c1:abff:fe5b:9696/64
+  Interface Type VETH
+  Interface Slave Type None
+  protodown: off 
+Interface eth3 is up, line protocol is up
+  Link ups:       2    last: 2024/03/16 14:10:23.16
+  Link downs:     1    last: 2024/03/16 14:10:23.16
+  vrf: default
+  index 148 metric 0 mtu 9500 speed 10000 
+  flags: <UP,BROADCAST,RUNNING,MULTICAST>
+  Type: Ethernet
+  HWaddr: aa:c1:ab:2d:f1:32
+  inet 192.168.22.2/24
+  inet6 fe80::a8c1:abff:fe2d:f132/64
+  Interface Type VETH
+  Interface Slave Type None
+  protodown: off 
+Interface lo is up, line protocol is up
+  Link ups:       0    last: (never)
+  Link downs:     0    last: (never)
+  vrf: default
+  index 1 metric 0 mtu 65536 speed 0 
+  flags: <UP,LOOPBACK,RUNNING>
+  Type: Loopback
+  inet 10.10.10.2/32
+  Interface Type Other
+  Interface Slave Type None
+  protodown: off
+
+
+sudo docker exec -it clab-frrlab1_1-router2 vtysh -c "show isis database" -c "show isis database detail"
+% Can't open configuration file /etc/frr/vtysh.conf due to 'No such file or directory'.
+Area 1:
+IS-IS Level-2 link-state database:
+LSP ID                  PduLen  SeqNumber   Chksum  Holdtime  ATT/P/OL
+PC1.00-00                  83   0x00000003  0xa17d    1058    0/0/0
+router1.00-00             134   0x00000003  0xf4da    1033    0/0/0
+router2.00-00        *    134   0x00000003  0xceae    1055    0/0/0
+PC2.00-00                  83   0x00000003  0x5e33    1040    0/0/0
+router3.00-00             134   0x00000003  0xa7a3    1083    0/0/0
+PC3.00-00                  83   0x00000003  0xa082    1088    0/0/0
+    6 LSPs
+
+Area 1:
+IS-IS Level-2 link-state database:
+LSP ID                  PduLen  SeqNumber   Chksum  Holdtime  ATT/P/OL
+PC1.00-00                  83   0x00000003  0xa17d    1058    0/0/0
+  Protocols Supported: IPv4
+  Area Address: 49.0001
+  Hostname: PC1
+  TE Router ID: 192.168.11.4
+  Router Capability: 192.168.11.4 , D:0, S:0
+  Extended Reachability: 1000.0000.1001.00 (Metric: 10)
+  IPv4 Interface Address: 192.168.11.4
+  Extended IP Reachability: 192.168.11.0/24 (Metric: 10)
+
+router1.00-00             134   0x00000003  0xf4da    1033    0/0/0
+  Protocols Supported: IPv4
+  Area Address: 49.0001
+  Hostname: router1
+  TE Router ID: 10.10.10.1
+  Router Capability: 10.10.10.1 , D:0, S:0
+  Extended Reachability: 2000.0000.2000.00 (Metric: 10)
+  Extended Reachability: 3000.0000.3000.00 (Metric: 10)
+  Extended Reachability: 0000.0000.0001.00 (Metric: 10)
+  IPv4 Interface Address: 10.10.10.1
+  Extended IP Reachability: 192.168.1.0/24 (Metric: 10)
+  Extended IP Reachability: 192.168.2.0/24 (Metric: 10)
+  Extended IP Reachability: 192.168.11.0/24 (Metric: 10)
+  Extended IP Reachability: 10.10.10.1/32 (Metric: 10)
+
+router2.00-00        *    134   0x00000003  0xceae    1055    0/0/0
+  Protocols Supported: IPv4
+  Area Address: 49.0001
+  Hostname: router2
+  TE Router ID: 10.10.10.2
+  Router Capability: 10.10.10.2 , D:0, S:0
+  Extended Reachability: 1000.0000.1001.00 (Metric: 10)
+  Extended Reachability: 3000.0000.3000.00 (Metric: 10)
+  Extended Reachability: 2000.0000.2002.00 (Metric: 10)
+  IPv4 Interface Address: 10.10.10.2
+  Extended IP Reachability: 192.168.1.0/24 (Metric: 10)
+  Extended IP Reachability: 192.168.3.0/24 (Metric: 10)
+  Extended IP Reachability: 192.168.22.0/24 (Metric: 10)
+  Extended IP Reachability: 10.10.10.2/32 (Metric: 10)
+
+PC2.00-00                  83   0x00000003  0x5e33    1040    0/0/0
+  Protocols Supported: IPv4
+  Area Address: 49.0001
+  Hostname: PC2
+  TE Router ID: 192.168.22.4
+  Router Capability: 192.168.22.4 , D:0, S:0
+  Extended Reachability: 2000.0000.2000.00 (Metric: 10)
+  IPv4 Interface Address: 192.168.22.4
+  Extended IP Reachability: 192.168.22.0/24 (Metric: 10)
+
+router3.00-00             134   0x00000003  0xa7a3    1083    0/0/0
+  Protocols Supported: IPv4
+  Area Address: 49.0001
+  Hostname: router3
+  TE Router ID: 10.10.10.3
+  Router Capability: 10.10.10.3 , D:0, S:0
+  Extended Reachability: 1000.0000.1001.00 (Metric: 10)
+  Extended Reachability: 2000.0000.2000.00 (Metric: 10)
+  Extended Reachability: 3000.0000.3003.00 (Metric: 10)
+  IPv4 Interface Address: 10.10.10.3
+  Extended IP Reachability: 192.168.2.0/24 (Metric: 10)
+  Extended IP Reachability: 192.168.3.0/24 (Metric: 10)
+  Extended IP Reachability: 192.168.33.0/24 (Metric: 10)
+  Extended IP Reachability: 10.10.10.3/32 (Metric: 10)
+
+PC3.00-00                  83   0x00000003  0xa082    1088    0/0/0
+  Protocols Supported: IPv4
+  Area Address: 49.0001
+  Hostname: PC3
+  TE Router ID: 192.168.33.4
+  Router Capability: 192.168.33.4 , D:0, S:0
+  Extended Reachability: 3000.0000.3000.00 (Metric: 10)
+  IPv4 Interface Address: 192.168.33.4
+  Extended IP Reachability: 192.168.33.0/24 (Metric: 10)
+
+    6 LSPs
+
+
+sudo docker exec -it clab-frrlab1_1-router3 vtysh -c "sh run"
+% Can't open configuration file /etc/frr/vtysh.conf due to 'No such file or directory'.
+Building configuration...
+
+Current configuration:
+!
+frr version 8.4_git
+frr defaults traditional
+hostname router3
+no ipv6 forwarding
+!
+interface eth1
+ ip address 192.168.2.3/24
+ ip router isis 1
+ isis circuit-type level-2-only
+ isis network point-to-point
+exit
+!
+interface eth2
+ ip address 192.168.3.3/24
+ ip router isis 1
+ isis circuit-type level-2-only
+ isis network point-to-point
+exit
+!
+interface eth3
+ ip address 192.168.33.3/24
+ ip router isis 1
+ isis circuit-type level-2-only
+ isis network point-to-point
+exit
+!
+interface lo
+ ip address 10.10.10.3/32
+ ip router isis 1
+ isis passive
+exit
+!
+router isis 1
+ is-type level-2-only
+ net 49.0001.3000.0000.3000.00
+exit
+!
+end
+
+
+sudo docker exec -it clab-frrlab1_1-router3 vtysh -c "sh ip route"
+% Can't open configuration file /etc/frr/vtysh.conf due to 'No such file or directory'.
+Codes: K - kernel route, C - connected, S - static, R - RIP,
+       O - OSPF, I - IS-IS, B - BGP, E - EIGRP, N - NHRP,
+       T - Table, v - VNC, V - VNC-Direct, A - Babel, F - PBR,
+       f - OpenFabric,
+       > - selected route, * - FIB route, q - queued, r - rejected, b - backup
+       t - trapped, o - offload failure
+
+K>* 0.0.0.0/0 [0/0] via 172.20.20.1, eth0, 00:16:47
+I>* 10.10.10.1/32 [115/20] via 192.168.2.1, eth1, weight 1, 00:16:10
+I>* 10.10.10.2/32 [115/20] via 192.168.3.2, eth2, weight 1, 00:16:10
+C>* 10.10.10.3/32 is directly connected, lo, 00:16:42
+C>* 172.20.20.0/24 is directly connected, eth0, 00:16:47
+I>* 192.168.1.0/24 [115/20] via 192.168.2.1, eth1, weight 1, 00:16:10
+  *                         via 192.168.3.2, eth2, weight 1, 00:16:10
+I   192.168.2.0/24 [115/20] via 192.168.2.1, eth1 inactive, weight 1, 00:16:10
+C>* 192.168.2.0/24 is directly connected, eth1, 00:16:42
+I   192.168.3.0/24 [115/20] via 192.168.3.2, eth2 inactive, weight 1, 00:16:10
+C>* 192.168.3.0/24 is directly connected, eth2, 00:16:42
+I>* 192.168.11.0/24 [115/20] via 192.168.2.1, eth1, weight 1, 00:16:10
+I>* 192.168.22.0/24 [115/20] via 192.168.3.2, eth2, weight 1, 00:16:10
+I   192.168.33.0/24 [115/20] via 192.168.33.4, eth3 inactive, weight 1, 00:16:09
+C>* 192.168.33.0/24 is directly connected, eth3, 00:16:42
+
+
+sudo docker exec -it clab-frrlab1_1-router3 bash -c "ping 10.10.10.1 -c 3"
+PING 10.10.10.1 (10.10.10.1): 56 data bytes
+64 bytes from 10.10.10.1: seq=0 ttl=64 time=0.072 ms
+64 bytes from 10.10.10.1: seq=1 ttl=64 time=0.053 ms
+64 bytes from 10.10.10.1: seq=2 ttl=64 time=0.057 ms
+
+--- 10.10.10.1 ping statistics ---
+3 packets transmitted, 3 packets received, 0% packet loss
+round-trip min/avg/max = 0.053/0.060/0.072 ms
+
+sudo docker exec -it clab-frrlab1_1-router3 bash -c "ping 10.10.10.2 -c 3"
+PING 10.10.10.2 (10.10.10.2): 56 data bytes
+64 bytes from 10.10.10.2: seq=0 ttl=64 time=0.071 ms
+64 bytes from 10.10.10.2: seq=1 ttl=64 time=0.054 ms
+64 bytes from 10.10.10.2: seq=2 ttl=64 time=0.052 ms
+
+--- 10.10.10.2 ping statistics ---
+3 packets transmitted, 3 packets received, 0% packet loss
+round-trip min/avg/max = 0.052/0.059/0.071 ms
+
+
+
+
+sudo docker exec -it clab-frrlab1_1-router3 bash -c "traceroute 10.10.10.1"
+traceroute to 10.10.10.1 (10.10.10.1), 30 hops max, 46 byte packets
+ 1  10.10.10.1 (10.10.10.1)  0.005 ms  0.003 ms  0.003 ms
+
+sudo docker exec -it clab-frrlab1_1-router3 bash -c "traceroute 10.10.10.2"
+traceroute to 10.10.10.2 (10.10.10.2), 30 hops max, 46 byte packets
+ 1  10.10.10.2 (10.10.10.2)  0.004 ms  0.002 ms  0.002 ms
+
+
+
+
+sudo docker exec -it clab-frrlab1_1-router3 vtysh -c "show interface brief" -c "show interface"
+% Can't open configuration file /etc/frr/vtysh.conf due to 'No such file or directory'.
+Interface       Status  VRF             Addresses
+---------       ------  ---             ---------
+eth0            up      default         172.20.20.2/24
+                                        + 2001:172:20:20::2/64
+eth1            up      default         192.168.2.3/24
+eth2            up      default         192.168.3.3/24
+eth3            up      default         192.168.33.3/24
+lo              up      default         10.10.10.3/32
+
+Interface eth0 is up, line protocol is up
+  Link ups:       0    last: (never)
+  Link downs:     0    last: (never)
+  vrf: default
+  index 130 metric 0 mtu 1500 speed 10000 
+  flags: <UP,BROADCAST,RUNNING,MULTICAST>
+  Type: Ethernet
+  HWaddr: 02:42:ac:14:14:02
+  inet 172.20.20.2/24
+  inet6 2001:172:20:20::2/64
+  inet6 fe80::42:acff:fe14:1402/64
+  Interface Type VETH
+  Interface Slave Type None
+  protodown: off 
+  Parent ifindex: 131
+Interface eth1 is up, line protocol is up
+  Link ups:       2    last: 2024/03/16 14:10:22.57
+  Link downs:     1    last: 2024/03/16 14:10:22.57
+  vrf: default
+  index 144 metric 0 mtu 9500 speed 10000 
+  flags: <UP,BROADCAST,RUNNING,MULTICAST>
+  Type: Ethernet
+  HWaddr: aa:c1:ab:8c:f1:a8
+  inet 192.168.2.3/24
+  inet6 fe80::a8c1:abff:fe8c:f1a8/64
+  Interface Type VETH
+  Interface Slave Type None
+  protodown: off 
+Interface eth2 is up, line protocol is up
+  Link ups:       2    last: 2024/03/16 14:10:23.14
+  Link downs:     1    last: 2024/03/16 14:10:23.14
+  vrf: default
+  index 152 metric 0 mtu 9500 speed 10000 
+  flags: <UP,BROADCAST,RUNNING,MULTICAST>
+  Type: Ethernet
+  HWaddr: aa:c1:ab:5b:f6:ed
+  inet 192.168.3.3/24
+  inet6 fe80::a8c1:abff:fe5b:f6ed/64
+  Interface Type VETH
+  Interface Slave Type None
+  protodown: off 
+Interface eth3 is up, line protocol is up
+  Link ups:       2    last: 2024/03/16 14:10:22.53
+  Link downs:     1    last: 2024/03/16 14:10:22.53
+  vrf: default
+  index 142 metric 0 mtu 9500 speed 10000 
+  flags: <UP,BROADCAST,RUNNING,MULTICAST>
+  Type: Ethernet
+  HWaddr: aa:c1:ab:40:28:72
+  inet 192.168.33.3/24
+  inet6 fe80::a8c1:abff:fe40:2872/64
+  Interface Type VETH
+  Interface Slave Type None
+  protodown: off 
+Interface lo is up, line protocol is up
+  Link ups:       0    last: (never)
+  Link downs:     0    last: (never)
+  vrf: default
+  index 1 metric 0 mtu 65536 speed 0 
+  flags: <UP,LOOPBACK,RUNNING>
+  Type: Loopback
+  inet 10.10.10.3/32
+  Interface Type Other
+  Interface Slave Type None
+  protodown: off
+
+
+sudo docker exec -it clab-frrlab1_1-router3 vtysh -c "show isis database" -c "show isis database detail"
+% Can't open configuration file /etc/frr/vtysh.conf due to 'No such file or directory'.
+Area 1:
+IS-IS Level-2 link-state database:
+LSP ID                  PduLen  SeqNumber   Chksum  Holdtime  ATT/P/OL
+PC1.00-00                  83   0x00000003  0xa17d    1054    0/0/0
+router1.00-00             134   0x00000003  0xf4da    1029    0/0/0
+router2.00-00             134   0x00000003  0xceae    1051    0/0/0
+PC2.00-00                  83   0x00000003  0x5e33    1036    0/0/0
+router3.00-00        *    134   0x00000003  0xa7a3    1078    0/0/0
+PC3.00-00                  83   0x00000003  0xa082    1084    0/0/0
+    6 LSPs
+
+Area 1:
+IS-IS Level-2 link-state database:
+LSP ID                  PduLen  SeqNumber   Chksum  Holdtime  ATT/P/OL
+PC1.00-00                  83   0x00000003  0xa17d    1054    0/0/0
+  Protocols Supported: IPv4
+  Area Address: 49.0001
+  Hostname: PC1
+  TE Router ID: 192.168.11.4
+  Router Capability: 192.168.11.4 , D:0, S:0
+  Extended Reachability: 1000.0000.1001.00 (Metric: 10)
+  IPv4 Interface Address: 192.168.11.4
+  Extended IP Reachability: 192.168.11.0/24 (Metric: 10)
+
+router1.00-00             134   0x00000003  0xf4da    1029    0/0/0
+  Protocols Supported: IPv4
+  Area Address: 49.0001
+  Hostname: router1
+  TE Router ID: 10.10.10.1
+  Router Capability: 10.10.10.1 , D:0, S:0
+  Extended Reachability: 2000.0000.2000.00 (Metric: 10)
+  Extended Reachability: 3000.0000.3000.00 (Metric: 10)
+  Extended Reachability: 0000.0000.0001.00 (Metric: 10)
+  IPv4 Interface Address: 10.10.10.1
+  Extended IP Reachability: 192.168.1.0/24 (Metric: 10)
+  Extended IP Reachability: 192.168.2.0/24 (Metric: 10)
+  Extended IP Reachability: 192.168.11.0/24 (Metric: 10)
+  Extended IP Reachability: 10.10.10.1/32 (Metric: 10)
+
+router2.00-00             134   0x00000003  0xceae    1051    0/0/0
+  Protocols Supported: IPv4
+  Area Address: 49.0001
+  Hostname: router2
+  TE Router ID: 10.10.10.2
+  Router Capability: 10.10.10.2 , D:0, S:0
+  Extended Reachability: 1000.0000.1001.00 (Metric: 10)
+  Extended Reachability: 3000.0000.3000.00 (Metric: 10)
+  Extended Reachability: 2000.0000.2002.00 (Metric: 10)
+  IPv4 Interface Address: 10.10.10.2
+  Extended IP Reachability: 192.168.1.0/24 (Metric: 10)
+  Extended IP Reachability: 192.168.3.0/24 (Metric: 10)
+  Extended IP Reachability: 192.168.22.0/24 (Metric: 10)
+  Extended IP Reachability: 10.10.10.2/32 (Metric: 10)
+
+PC2.00-00                  83   0x00000003  0x5e33    1036    0/0/0
+  Protocols Supported: IPv4
+  Area Address: 49.0001
+  Hostname: PC2
+  TE Router ID: 192.168.22.4
+  Router Capability: 192.168.22.4 , D:0, S:0
+  Extended Reachability: 2000.0000.2000.00 (Metric: 10)
+  IPv4 Interface Address: 192.168.22.4
+  Extended IP Reachability: 192.168.22.0/24 (Metric: 10)
+
+router3.00-00        *    134   0x00000003  0xa7a3    1078    0/0/0
+  Protocols Supported: IPv4
+  Area Address: 49.0001
+  Hostname: router3
+  TE Router ID: 10.10.10.3
+  Router Capability: 10.10.10.3 , D:0, S:0
+  Extended Reachability: 1000.0000.1001.00 (Metric: 10)
+  Extended Reachability: 2000.0000.2000.00 (Metric: 10)
+  Extended Reachability: 3000.0000.3003.00 (Metric: 10)
+  IPv4 Interface Address: 10.10.10.3
+  Extended IP Reachability: 192.168.2.0/24 (Metric: 10)
+  Extended IP Reachability: 192.168.3.0/24 (Metric: 10)
+  Extended IP Reachability: 192.168.33.0/24 (Metric: 10)
+  Extended IP Reachability: 10.10.10.3/32 (Metric: 10)
+
+PC3.00-00                  83   0x00000003  0xa082    1084    0/0/0
+  Protocols Supported: IPv4
+  Area Address: 49.0001
+  Hostname: PC3
+  TE Router ID: 192.168.33.4
+  Router Capability: 192.168.33.4 , D:0, S:0
+  Extended Reachability: 3000.0000.3000.00 (Metric: 10)
+  IPv4 Interface Address: 192.168.33.4
+  Extended IP Reachability: 192.168.33.0/24 (Metric: 10)
+
+    6 LSPs
+
+
+sudo docker exec -it clab-frrlab1_1-PC1 vtysh -c "sh run"
+% Can't open configuration file /etc/frr/vtysh.conf due to 'No such file or directory'.
+Building configuration...
+
+Current configuration:
+!
+frr version 8.4_git
+frr defaults traditional
+hostname PC1
+no ipv6 forwarding
+!
+interface eth1
+ ip address 192.168.11.4/24
+ ip router isis 1
+ isis circuit-type level-2-only
+ isis network point-to-point
+exit
+!
+interface lo
+ ip router isis 1
+ isis passive
+exit
+!
+router isis 1
+ is-type level-2-only
+ net 49.0001.0000.0000.0001.00
+exit
+!
+end
+
+
+sudo docker exec -it clab-frrlab1_1-PC1 vtysh -c "sh ip route"
+% Can't open configuration file /etc/frr/vtysh.conf due to 'No such file or directory'.
+Codes: K - kernel route, C - connected, S - static, R - RIP,
+       O - OSPF, I - IS-IS, B - BGP, E - EIGRP, N - NHRP,
+       T - Table, v - VNC, V - VNC-Direct, A - Babel, F - PBR,
+       f - OpenFabric,
+       > - selected route, * - FIB route, q - queued, r - rejected, b - backup
+       t - trapped, o - offload failure
+
+K>* 0.0.0.0/0 [0/0] via 172.20.20.1, eth0, 00:16:51
+I>* 10.10.10.1/32 [115/20] via 192.168.11.1, eth1, weight 1, 00:16:14
+I>* 10.10.10.2/32 [115/30] via 192.168.11.1, eth1, weight 1, 00:16:14
+I>* 10.10.10.3/32 [115/30] via 192.168.11.1, eth1, weight 1, 00:16:14
+C>* 172.20.20.0/24 is directly connected, eth0, 00:16:51
+I>* 192.168.1.0/24 [115/20] via 192.168.11.1, eth1, weight 1, 00:16:14
+I>* 192.168.2.0/24 [115/20] via 192.168.11.1, eth1, weight 1, 00:16:14
+I>* 192.168.3.0/24 [115/30] via 192.168.11.1, eth1, weight 1, 00:16:14
+I   192.168.11.0/24 [115/20] via 192.168.11.1, eth1 inactive, weight 1, 00:16:14
+C>* 192.168.11.0/24 is directly connected, eth1, 00:16:45
+I>* 192.168.22.0/24 [115/30] via 192.168.11.1, eth1, weight 1, 00:16:14
+I>* 192.168.33.0/24 [115/30] via 192.168.11.1, eth1, weight 1, 00:16:14
+
+
+sudo docker exec -it clab-frrlab1_1-PC1 bash -c "ping 192.168.22.4 -c 3"
+PING 192.168.22.4 (192.168.22.4): 56 data bytes
+64 bytes from 192.168.22.4: seq=0 ttl=62 time=0.089 ms
+64 bytes from 192.168.22.4: seq=1 ttl=62 time=0.074 ms
+64 bytes from 192.168.22.4: seq=2 ttl=62 time=0.074 ms
+
+--- 192.168.22.4 ping statistics ---
+3 packets transmitted, 3 packets received, 0% packet loss
+round-trip min/avg/max = 0.074/0.079/0.089 ms
+
+sudo docker exec -it clab-frrlab1_1-PC1 bash -c "ping 192.168.33.4 -c 3"
+PING 192.168.33.4 (192.168.33.4): 56 data bytes
+64 bytes from 192.168.33.4: seq=0 ttl=62 time=0.077 ms
+64 bytes from 192.168.33.4: seq=1 ttl=62 time=0.077 ms
+64 bytes from 192.168.33.4: seq=2 ttl=62 time=0.071 ms
+
+--- 192.168.33.4 ping statistics ---
+3 packets transmitted, 3 packets received, 0% packet loss
+round-trip min/avg/max = 0.071/0.075/0.077 ms
+
+
+
+
+sudo docker exec -it clab-frrlab1_1-PC1 bash -c "traceroute 192.168.22.4"
+traceroute to 192.168.22.4 (192.168.22.4), 30 hops max, 46 byte packets
+ 1  192.168.11.1 (192.168.11.1)  0.005 ms  0.005 ms  0.004 ms
+ 2  192.168.1.2 (192.168.1.2)  0.002 ms  0.003 ms  0.002 ms
+ 3  192.168.22.4 (192.168.22.4)  0.002 ms  0.002 ms  0.002 ms
+
+sudo docker exec -it clab-frrlab1_1-PC1 bash -c "traceroute 192.168.33.4"
+traceroute to 192.168.33.4 (192.168.33.4), 30 hops max, 46 byte packets
+ 1  192.168.11.1 (192.168.11.1)  0.004 ms  0.003 ms  0.002 ms
+ 2  192.168.2.3 (192.168.2.3)  0.002 ms  0.002 ms  0.003 ms
+ 3  192.168.33.4 (192.168.33.4)  0.001 ms  0.003 ms  0.001 ms
+
+
+
+
+sudo docker exec -it clab-frrlab1_1-PC1 vtysh -c "show interface brief" -c "show interface"
+% Can't open configuration file /etc/frr/vtysh.conf due to 'No such file or directory'.
+Interface       Status  VRF             Addresses
+---------       ------  ---             ---------
+eth0            up      default         172.20.20.4/24
+                                        + 2001:172:20:20::4/64
+eth1            up      default         192.168.11.4/24
+lo              up      default         
+
+Interface eth0 is up, line protocol is up
+  Link ups:       0    last: (never)
+  Link downs:     0    last: (never)
+  vrf: default
+  index 134 metric 0 mtu 1500 speed 10000 
+  flags: <UP,BROADCAST,RUNNING,MULTICAST>
+  Type: Ethernet
+  HWaddr: 02:42:ac:14:14:04
+  inet 172.20.20.4/24
+  inet6 2001:172:20:20::4/64
+  inet6 fe80::42:acff:fe14:1404/64
+  Interface Type VETH
+  Interface Slave Type None
+  protodown: off 
+  Parent ifindex: 135
+Interface eth1 is up, line protocol is up
+  Link ups:       2    last: 2024/03/16 14:10:22.79
+  Link downs:     1    last: 2024/03/16 14:10:22.67
+  vrf: default
+  index 147 metric 0 mtu 9500 speed 10000 
+  flags: <UP,BROADCAST,RUNNING,MULTICAST>
+  Type: Ethernet
+  HWaddr: aa:c1:ab:43:8b:fe
+  inet 192.168.11.4/24
+  inet6 fe80::a8c1:abff:fe43:8bfe/64
+  Interface Type VETH
+  Interface Slave Type None
+  protodown: off 
+Interface lo is up, line protocol is up
+  Link ups:       0    last: (never)
+  Link downs:     0    last: (never)
+  vrf: default
+  index 1 metric 0 mtu 65536 speed 0 
+  flags: <UP,LOOPBACK,RUNNING>
+  Type: Loopback
+  Interface Type Other
+  Interface Slave Type None
+  protodown: off
+
+
+sudo docker exec -it clab-frrlab1_1-PC1 vtysh -c "show isis database" -c "show isis database detail"
+% Can't open configuration file /etc/frr/vtysh.conf due to 'No such file or directory'.
+Area 1:
+IS-IS Level-2 link-state database:
+LSP ID                  PduLen  SeqNumber   Chksum  Holdtime  ATT/P/OL
+PC1.00-00            *     83   0x00000003  0xa17d    1049    0/0/0
+router1.00-00             134   0x00000003  0xf4da    1025    0/0/0
+router2.00-00             134   0x00000003  0xceae    1047    0/0/0
+PC2.00-00                  83   0x00000003  0x5e33    1031    0/0/0
+router3.00-00             134   0x00000003  0xa7a3    1074    0/0/0
+PC3.00-00                  83   0x00000003  0xa082    1080    0/0/0
+    6 LSPs
+
+Area 1:
+IS-IS Level-2 link-state database:
+LSP ID                  PduLen  SeqNumber   Chksum  Holdtime  ATT/P/OL
+PC1.00-00            *     83   0x00000003  0xa17d    1049    0/0/0
+  Protocols Supported: IPv4
+  Area Address: 49.0001
+  Hostname: PC1
+  TE Router ID: 192.168.11.4
+  Router Capability: 192.168.11.4 , D:0, S:0
+  Extended Reachability: 1000.0000.1001.00 (Metric: 10)
+  IPv4 Interface Address: 192.168.11.4
+  Extended IP Reachability: 192.168.11.0/24 (Metric: 10)
+
+router1.00-00             134   0x00000003  0xf4da    1025    0/0/0
+  Protocols Supported: IPv4
+  Area Address: 49.0001
+  Hostname: router1
+  TE Router ID: 10.10.10.1
+  Router Capability: 10.10.10.1 , D:0, S:0
+  Extended Reachability: 2000.0000.2000.00 (Metric: 10)
+  Extended Reachability: 3000.0000.3000.00 (Metric: 10)
+  Extended Reachability: 0000.0000.0001.00 (Metric: 10)
+  IPv4 Interface Address: 10.10.10.1
+  Extended IP Reachability: 192.168.1.0/24 (Metric: 10)
+  Extended IP Reachability: 192.168.2.0/24 (Metric: 10)
+  Extended IP Reachability: 192.168.11.0/24 (Metric: 10)
+  Extended IP Reachability: 10.10.10.1/32 (Metric: 10)
+
+router2.00-00             134   0x00000003  0xceae    1047    0/0/0
+  Protocols Supported: IPv4
+  Area Address: 49.0001
+  Hostname: router2
+  TE Router ID: 10.10.10.2
+  Router Capability: 10.10.10.2 , D:0, S:0
+  Extended Reachability: 1000.0000.1001.00 (Metric: 10)
+  Extended Reachability: 3000.0000.3000.00 (Metric: 10)
+  Extended Reachability: 2000.0000.2002.00 (Metric: 10)
+  IPv4 Interface Address: 10.10.10.2
+  Extended IP Reachability: 192.168.1.0/24 (Metric: 10)
+  Extended IP Reachability: 192.168.3.0/24 (Metric: 10)
+  Extended IP Reachability: 192.168.22.0/24 (Metric: 10)
+  Extended IP Reachability: 10.10.10.2/32 (Metric: 10)
+
+PC2.00-00                  83   0x00000003  0x5e33    1031    0/0/0
+  Protocols Supported: IPv4
+  Area Address: 49.0001
+  Hostname: PC2
+  TE Router ID: 192.168.22.4
+  Router Capability: 192.168.22.4 , D:0, S:0
+  Extended Reachability: 2000.0000.2000.00 (Metric: 10)
+  IPv4 Interface Address: 192.168.22.4
+  Extended IP Reachability: 192.168.22.0/24 (Metric: 10)
+
+router3.00-00             134   0x00000003  0xa7a3    1074    0/0/0
+  Protocols Supported: IPv4
+  Area Address: 49.0001
+  Hostname: router3
+  TE Router ID: 10.10.10.3
+  Router Capability: 10.10.10.3 , D:0, S:0
+  Extended Reachability: 1000.0000.1001.00 (Metric: 10)
+  Extended Reachability: 2000.0000.2000.00 (Metric: 10)
+  Extended Reachability: 3000.0000.3003.00 (Metric: 10)
+  IPv4 Interface Address: 10.10.10.3
+  Extended IP Reachability: 192.168.2.0/24 (Metric: 10)
+  Extended IP Reachability: 192.168.3.0/24 (Metric: 10)
+  Extended IP Reachability: 192.168.33.0/24 (Metric: 10)
+  Extended IP Reachability: 10.10.10.3/32 (Metric: 10)
+
+PC3.00-00                  83   0x00000003  0xa082    1080    0/0/0
+  Protocols Supported: IPv4
+  Area Address: 49.0001
+  Hostname: PC3
+  TE Router ID: 192.168.33.4
+  Router Capability: 192.168.33.4 , D:0, S:0
+  Extended Reachability: 3000.0000.3000.00 (Metric: 10)
+  IPv4 Interface Address: 192.168.33.4
+  Extended IP Reachability: 192.168.33.0/24 (Metric: 10)
+
+    6 LSPs
+
+
+sudo docker exec -it clab-frrlab1_1-PC2 vtysh -c "sh run"
+% Can't open configuration file /etc/frr/vtysh.conf due to 'No such file or directory'.
+Building configuration...
+
+Current configuration:
+!
+frr version 8.4_git
+frr defaults traditional
+hostname PC2
+no ipv6 forwarding
+!
+interface eth1
+ ip address 192.168.22.4/24
+ ip router isis 1
+ isis circuit-type level-2-only
+ isis network point-to-point
+exit
+!
+interface lo
+ ip router isis 1
+ isis passive
+exit
+!
+router isis 1
+ is-type level-2-only
+ net 49.0001.2000.0000.2002.00
+exit
+!
+end
+
+
+sudo docker exec -it clab-frrlab1_1-PC2 vtysh -c "sh ip route"
+% Can't open configuration file /etc/frr/vtysh.conf due to 'No such file or directory'.
+Codes: K - kernel route, C - connected, S - static, R - RIP,
+       O - OSPF, I - IS-IS, B - BGP, E - EIGRP, N - NHRP,
+       T - Table, v - VNC, V - VNC-Direct, A - Babel, F - PBR,
+       f - OpenFabric,
+       > - selected route, * - FIB route, q - queued, r - rejected, b - backup
+       t - trapped, o - offload failure
+
+K>* 0.0.0.0/0 [0/0] via 172.20.20.1, eth0, 00:16:55
+I>* 10.10.10.1/32 [115/30] via 192.168.22.2, eth1, weight 1, 00:16:19
+I>* 10.10.10.2/32 [115/20] via 192.168.22.2, eth1, weight 1, 00:16:19
+I>* 10.10.10.3/32 [115/30] via 192.168.22.2, eth1, weight 1, 00:16:19
+C>* 172.20.20.0/24 is directly connected, eth0, 00:16:55
+I>* 192.168.1.0/24 [115/20] via 192.168.22.2, eth1, weight 1, 00:16:19
+I>* 192.168.2.0/24 [115/30] via 192.168.22.2, eth1, weight 1, 00:16:19
+I>* 192.168.3.0/24 [115/20] via 192.168.22.2, eth1, weight 1, 00:16:19
+I>* 192.168.11.0/24 [115/30] via 192.168.22.2, eth1, weight 1, 00:16:19
+I   192.168.22.0/24 [115/20] via 192.168.22.2, eth1 inactive, weight 1, 00:16:19
+C>* 192.168.22.0/24 is directly connected, eth1, 00:16:50
+I>* 192.168.33.0/24 [115/30] via 192.168.22.2, eth1, weight 1, 00:16:19
+
+
+sudo docker exec -it clab-frrlab1_1-PC2 bash -c "ping 192.168.11.4 -c 3"
+PING 192.168.11.4 (192.168.11.4): 56 data bytes
+64 bytes from 192.168.11.4: seq=0 ttl=62 time=0.093 ms
+64 bytes from 192.168.11.4: seq=1 ttl=62 time=0.076 ms
+64 bytes from 192.168.11.4: seq=2 ttl=62 time=0.075 ms
+
+--- 192.168.11.4 ping statistics ---
+3 packets transmitted, 3 packets received, 0% packet loss
+round-trip min/avg/max = 0.075/0.081/0.093 ms
+
+sudo docker exec -it clab-frrlab1_1-PC2 bash -c "ping 192.168.33.4 -c 3"
+PING 192.168.33.4 (192.168.33.4): 56 data bytes
+64 bytes from 192.168.33.4: seq=0 ttl=62 time=0.092 ms
+64 bytes from 192.168.33.4: seq=1 ttl=62 time=0.065 ms
+64 bytes from 192.168.33.4: seq=2 ttl=62 time=0.073 ms
+
+--- 192.168.33.4 ping statistics ---
+3 packets transmitted, 3 packets received, 0% packet loss
+round-trip min/avg/max = 0.065/0.076/0.092 ms
+
+
+
+
+sudo docker exec -it clab-frrlab1_1-PC2 bash -c "traceroute 192.168.11.4"
+traceroute to 192.168.11.4 (192.168.11.4), 30 hops max, 46 byte packets
+ 1  192.168.22.2 (192.168.22.2)  0.004 ms  0.003 ms  0.001 ms
+ 2  192.168.1.1 (192.168.1.1)  0.001 ms  0.003 ms  0.002 ms
+ 3  192.168.11.4 (192.168.11.4)  0.002 ms  0.004 ms  0.002 ms
+
+sudo docker exec -it clab-frrlab1_1-PC2 bash -c "traceroute 192.168.33.4"
+traceroute to 192.168.33.4 (192.168.33.4), 30 hops max, 46 byte packets
+ 1  192.168.22.2 (192.168.22.2)  0.005 ms  0.003 ms  0.002 ms
+ 2  192.168.3.3 (192.168.3.3)  0.002 ms  0.003 ms  0.002 ms
+ 3  192.168.33.4 (192.168.33.4)  0.002 ms  0.003 ms  0.002 ms
+
+
+
+
+sudo docker exec -it clab-frrlab1_1-PC2 vtysh -c "show interface brief" -c "show interface"
+% Can't open configuration file /etc/frr/vtysh.conf due to 'No such file or directory'.
+Interface       Status  VRF             Addresses
+---------       ------  ---             ---------
+eth0            up      default         172.20.20.7/24
+                                        + 2001:172:20:20::7/64
+eth1            up      default         192.168.22.4/24
+lo              up      default         
+
+Interface eth0 is up, line protocol is up
+  Link ups:       1    last: 2024/03/16 14:10:23.16
+  Link downs:     0    last: (never)
+  vrf: default
+  index 140 metric 0 mtu 1500 speed 10000 
+  flags: <UP,BROADCAST,RUNNING,MULTICAST>
+  Type: Ethernet
+  HWaddr: 02:42:ac:14:14:07
+  inet 172.20.20.7/24
+  inet6 2001:172:20:20::7/64
+  inet6 fe80::42:acff:fe14:1407/64
+  Interface Type VETH
+  Interface Slave Type None
+  protodown: off 
+  Parent ifindex: 141
+Interface eth1 is up, line protocol is up
+  Link ups:       2    last: 2024/03/16 14:10:23.16
+  Link downs:     2    last: 2024/03/16 14:10:23.16
+  vrf: default
+  index 149 metric 0 mtu 9500 speed 10000 
+  flags: <UP,BROADCAST,RUNNING,MULTICAST>
+  Type: Ethernet
+  HWaddr: aa:c1:ab:81:79:d5
+  inet 192.168.22.4/24
+  inet6 fe80::a8c1:abff:fe81:79d5/64
+  Interface Type VETH
+  Interface Slave Type None
+  protodown: off 
+Interface lo is up, line protocol is up
+  Link ups:       0    last: (never)
+  Link downs:     0    last: (never)
+  vrf: default
+  index 1 metric 0 mtu 65536 speed 0 
+  flags: <UP,LOOPBACK,RUNNING>
+  Type: Loopback
+  Interface Type Other
+  Interface Slave Type None
+  protodown: off
+
+
+sudo docker exec -it clab-frrlab1_1-PC2 vtysh -c "show isis database" -c "show isis database detail"
+% Can't open configuration file /etc/frr/vtysh.conf due to 'No such file or directory'.
+Area 1:
+IS-IS Level-2 link-state database:
+LSP ID                  PduLen  SeqNumber   Chksum  Holdtime  ATT/P/OL
+PC1.00-00                  83   0x00000003  0xa17d    1044    0/0/0
+router1.00-00             134   0x00000003  0xf4da    1019    0/0/0
+router2.00-00             134   0x00000003  0xceae    1042    0/0/0
+PC2.00-00            *     83   0x00000003  0x5e33    1026    0/0/0
+router3.00-00             134   0x00000003  0xa7a3    1069    0/0/0
+PC3.00-00                  83   0x00000003  0xa082    1075    0/0/0
+    6 LSPs
+
+Area 1:
+IS-IS Level-2 link-state database:
+LSP ID                  PduLen  SeqNumber   Chksum  Holdtime  ATT/P/OL
+PC1.00-00                  83   0x00000003  0xa17d    1044    0/0/0
+  Protocols Supported: IPv4
+  Area Address: 49.0001
+  Hostname: PC1
+  TE Router ID: 192.168.11.4
+  Router Capability: 192.168.11.4 , D:0, S:0
+  Extended Reachability: 1000.0000.1001.00 (Metric: 10)
+  IPv4 Interface Address: 192.168.11.4
+  Extended IP Reachability: 192.168.11.0/24 (Metric: 10)
+
+router1.00-00             134   0x00000003  0xf4da    1019    0/0/0
+  Protocols Supported: IPv4
+  Area Address: 49.0001
+  Hostname: router1
+  TE Router ID: 10.10.10.1
+  Router Capability: 10.10.10.1 , D:0, S:0
+  Extended Reachability: 2000.0000.2000.00 (Metric: 10)
+  Extended Reachability: 3000.0000.3000.00 (Metric: 10)
+  Extended Reachability: 0000.0000.0001.00 (Metric: 10)
+  IPv4 Interface Address: 10.10.10.1
+  Extended IP Reachability: 192.168.1.0/24 (Metric: 10)
+  Extended IP Reachability: 192.168.2.0/24 (Metric: 10)
+  Extended IP Reachability: 192.168.11.0/24 (Metric: 10)
+  Extended IP Reachability: 10.10.10.1/32 (Metric: 10)
+
+router2.00-00             134   0x00000003  0xceae    1042    0/0/0
+  Protocols Supported: IPv4
+  Area Address: 49.0001
+  Hostname: router2
+  TE Router ID: 10.10.10.2
+  Router Capability: 10.10.10.2 , D:0, S:0
+  Extended Reachability: 1000.0000.1001.00 (Metric: 10)
+  Extended Reachability: 3000.0000.3000.00 (Metric: 10)
+  Extended Reachability: 2000.0000.2002.00 (Metric: 10)
+  IPv4 Interface Address: 10.10.10.2
+  Extended IP Reachability: 192.168.1.0/24 (Metric: 10)
+  Extended IP Reachability: 192.168.3.0/24 (Metric: 10)
+  Extended IP Reachability: 192.168.22.0/24 (Metric: 10)
+  Extended IP Reachability: 10.10.10.2/32 (Metric: 10)
+
+PC2.00-00            *     83   0x00000003  0x5e33    1026    0/0/0
+  Protocols Supported: IPv4
+  Area Address: 49.0001
+  Hostname: PC2
+  TE Router ID: 192.168.22.4
+  Router Capability: 192.168.22.4 , D:0, S:0
+  Extended Reachability: 2000.0000.2000.00 (Metric: 10)
+  IPv4 Interface Address: 192.168.22.4
+  Extended IP Reachability: 192.168.22.0/24 (Metric: 10)
+
+router3.00-00             134   0x00000003  0xa7a3    1069    0/0/0
+  Protocols Supported: IPv4
+  Area Address: 49.0001
+  Hostname: router3
+  TE Router ID: 10.10.10.3
+  Router Capability: 10.10.10.3 , D:0, S:0
+  Extended Reachability: 1000.0000.1001.00 (Metric: 10)
+  Extended Reachability: 2000.0000.2000.00 (Metric: 10)
+  Extended Reachability: 3000.0000.3003.00 (Metric: 10)
+  IPv4 Interface Address: 10.10.10.3
+  Extended IP Reachability: 192.168.2.0/24 (Metric: 10)
+  Extended IP Reachability: 192.168.3.0/24 (Metric: 10)
+  Extended IP Reachability: 192.168.33.0/24 (Metric: 10)
+  Extended IP Reachability: 10.10.10.3/32 (Metric: 10)
+
+PC3.00-00                  83   0x00000003  0xa082    1075    0/0/0
+  Protocols Supported: IPv4
+  Area Address: 49.0001
+  Hostname: PC3
+  TE Router ID: 192.168.33.4
+  Router Capability: 192.168.33.4 , D:0, S:0
+  Extended Reachability: 3000.0000.3000.00 (Metric: 10)
+  IPv4 Interface Address: 192.168.33.4
+  Extended IP Reachability: 192.168.33.0/24 (Metric: 10)
+
+    6 LSPs
+
+
+sudo docker exec -it clab-frrlab1_1-PC3 vtysh -c "sh run"
+% Can't open configuration file /etc/frr/vtysh.conf due to 'No such file or directory'.
+Building configuration...
+
+Current configuration:
+!
+frr version 8.4_git
+frr defaults traditional
+hostname PC3
+no ipv6 forwarding
+!
+interface eth1
+ ip address 192.168.33.4/24
+ ip router isis 1
+ isis circuit-type level-2-only
+ isis network point-to-point
+exit
+!
+interface lo
+ ip router isis 1
+ isis passive
+exit
+!
+router isis 1
+ is-type level-2-only
+ net 49.0001.3000.0000.3003.00
+exit
+!
+end
+
+
+sudo docker exec -it clab-frrlab1_1-PC3 vtysh -c "sh ip route"
+% Can't open configuration file /etc/frr/vtysh.conf due to 'No such file or directory'.
+Codes: K - kernel route, C - connected, S - static, R - RIP,
+       O - OSPF, I - IS-IS, B - BGP, E - EIGRP, N - NHRP,
+       T - Table, v - VNC, V - VNC-Direct, A - Babel, F - PBR,
+       f - OpenFabric,
+       > - selected route, * - FIB route, q - queued, r - rejected, b - backup
+       t - trapped, o - offload failure
+
+K>* 0.0.0.0/0 [0/0] via 172.20.20.1, eth0, 00:17:00
+I>* 10.10.10.1/32 [115/30] via 192.168.33.3, eth1, weight 1, 00:16:23
+I>* 10.10.10.2/32 [115/30] via 192.168.33.3, eth1, weight 1, 00:16:23
+I>* 10.10.10.3/32 [115/20] via 192.168.33.3, eth1, weight 1, 00:16:23
+C>* 172.20.20.0/24 is directly connected, eth0, 00:17:00
+I>* 192.168.1.0/24 [115/30] via 192.168.33.3, eth1, weight 1, 00:16:23
+I>* 192.168.2.0/24 [115/20] via 192.168.33.3, eth1, weight 1, 00:16:23
+I>* 192.168.3.0/24 [115/20] via 192.168.33.3, eth1, weight 1, 00:16:23
+I>* 192.168.11.0/24 [115/30] via 192.168.33.3, eth1, weight 1, 00:16:23
+I>* 192.168.22.0/24 [115/30] via 192.168.33.3, eth1, weight 1, 00:16:23
+I   192.168.33.0/24 [115/20] via 192.168.33.3, eth1 inactive, weight 1, 00:16:23
+C>* 192.168.33.0/24 is directly connected, eth1, 00:16:54
+
+
+sudo docker exec -it clab-frrlab1_1-PC3 bash -c "ping 192.168.11.4 -c 3"
+PING 192.168.11.4 (192.168.11.4): 56 data bytes
+64 bytes from 192.168.11.4: seq=0 ttl=62 time=0.093 ms
+64 bytes from 192.168.11.4: seq=1 ttl=62 time=0.074 ms
+64 bytes from 192.168.11.4: seq=2 ttl=62 time=0.073 ms
+
+--- 192.168.11.4 ping statistics ---
+3 packets transmitted, 3 packets received, 0% packet loss
+round-trip min/avg/max = 0.073/0.080/0.093 ms
+
+sudo docker exec -it clab-frrlab1_1-PC3 bash -c "ping 192.168.22.4 -c 3"
+PING 192.168.22.4 (192.168.22.4): 56 data bytes
+64 bytes from 192.168.22.4: seq=0 ttl=62 time=0.101 ms
+64 bytes from 192.168.22.4: seq=1 ttl=62 time=0.071 ms
+64 bytes from 192.168.22.4: seq=2 ttl=62 time=0.069 ms
+
+--- 192.168.22.4 ping statistics ---
+3 packets transmitted, 3 packets received, 0% packet loss
+round-trip min/avg/max = 0.069/0.080/0.101 ms
+
+
+
+
+sudo docker exec -it clab-frrlab1_1-PC3 bash -c "traceroute 192.168.11.4"
+traceroute to 192.168.11.4 (192.168.11.4), 30 hops max, 46 byte packets
+ 1  192.168.33.3 (192.168.33.3)  0.005 ms  0.004 ms  0.002 ms
+ 2  192.168.2.1 (192.168.2.1)  0.002 ms  0.003 ms  0.002 ms
+ 3  192.168.11.4 (192.168.11.4)  0.002 ms  0.004 ms  0.003 ms
+
+sudo docker exec -it clab-frrlab1_1-PC3 bash -c "traceroute 192.168.22.4"
+traceroute to 192.168.22.4 (192.168.22.4), 30 hops max, 46 byte packets
+ 1  192.168.33.3 (192.168.33.3)  0.004 ms  0.003 ms  0.002 ms
+ 2  192.168.3.2 (192.168.3.2)  0.011 ms  0.002 ms  0.002 ms
+ 3  192.168.22.4 (192.168.22.4)  0.002 ms  0.004 ms  0.002 ms
+
+
+
+
+sudo docker exec -it clab-frrlab1_1-PC3 vtysh -c "show interface brief" -c "show interface"
+% Can't open configuration file /etc/frr/vtysh.conf due to 'No such file or directory'.
+Interface       Status  VRF             Addresses
+---------       ------  ---             ---------
+eth0            up      default         172.20.20.3/24
+                                        + 2001:172:20:20::3/64
+eth1            up      default         192.168.33.4/24
+lo              up      default         
+
+Interface eth0 is up, line protocol is up
+  Link ups:       1    last: 2024/03/16 14:10:22.54
+  Link downs:     0    last: (never)
+  vrf: default
+  index 132 metric 0 mtu 1500 speed 10000 
+  flags: <UP,BROADCAST,RUNNING,MULTICAST>
+  Type: Ethernet
+  HWaddr: 02:42:ac:14:14:03
+  inet 172.20.20.3/24
+  inet6 2001:172:20:20::3/64
+  inet6 fe80::42:acff:fe14:1403/64
+  Interface Type VETH
+  Interface Slave Type None
+  protodown: off 
+  Parent ifindex: 133
+Interface eth1 is up, line protocol is up
+  Link ups:       2    last: 2024/03/16 14:10:22.54
+  Link downs:     1    last: 2024/03/16 14:10:22.54
+  vrf: default
+  index 143 metric 0 mtu 9500 speed 10000 
+  flags: <UP,BROADCAST,RUNNING,MULTICAST>
+  Type: Ethernet
+  HWaddr: aa:c1:ab:73:19:2f
+  inet 192.168.33.4/24
+  inet6 fe80::a8c1:abff:fe73:192f/64
+  Interface Type VETH
+  Interface Slave Type None
+  protodown: off 
+  Parent ifindex: 142
+Interface lo is up, line protocol is up
+  Link ups:       0    last: (never)
+  Link downs:     0    last: (never)
+  vrf: default
+  index 1 metric 0 mtu 65536 speed 0 
+  flags: <UP,LOOPBACK,RUNNING>
+  Type: Loopback
+  Interface Type Other
+  Interface Slave Type None
+  protodown: off
+
+
+sudo docker exec -it clab-frrlab1_1-PC3 vtysh -c "show isis database" -c "show isis database detail"
+% Can't open configuration file /etc/frr/vtysh.conf due to 'No such file or directory'.
+Area 1:
+IS-IS Level-2 link-state database:
+LSP ID                  PduLen  SeqNumber   Chksum  Holdtime  ATT/P/OL
+PC1.00-00                  83   0x00000003  0xa17d    1040    0/0/0
+router1.00-00             134   0x00000003  0xf4da    1015    0/0/0
+router2.00-00             134   0x00000003  0xceae    1037    0/0/0
+PC2.00-00                  83   0x00000003  0x5e33    1022    0/0/0
+router3.00-00             134   0x00000003  0xa7a3    1065    0/0/0
+PC3.00-00            *     83   0x00000003  0xa082    1070    0/0/0
+    6 LSPs
+
+Area 1:
+IS-IS Level-2 link-state database:
+LSP ID                  PduLen  SeqNumber   Chksum  Holdtime  ATT/P/OL
+PC1.00-00                  83   0x00000003  0xa17d    1040    0/0/0
+  Protocols Supported: IPv4
+  Area Address: 49.0001
+  Hostname: PC1
+  TE Router ID: 192.168.11.4
+  Router Capability: 192.168.11.4 , D:0, S:0
+  Extended Reachability: 1000.0000.1001.00 (Metric: 10)
+  IPv4 Interface Address: 192.168.11.4
+  Extended IP Reachability: 192.168.11.0/24 (Metric: 10)
+
+router1.00-00             134   0x00000003  0xf4da    1015    0/0/0
+  Protocols Supported: IPv4
+  Area Address: 49.0001
+  Hostname: router1
+  TE Router ID: 10.10.10.1
+  Router Capability: 10.10.10.1 , D:0, S:0
+  Extended Reachability: 2000.0000.2000.00 (Metric: 10)
+  Extended Reachability: 3000.0000.3000.00 (Metric: 10)
+  Extended Reachability: 0000.0000.0001.00 (Metric: 10)
+  IPv4 Interface Address: 10.10.10.1
+  Extended IP Reachability: 192.168.1.0/24 (Metric: 10)
+  Extended IP Reachability: 192.168.2.0/24 (Metric: 10)
+  Extended IP Reachability: 192.168.11.0/24 (Metric: 10)
+  Extended IP Reachability: 10.10.10.1/32 (Metric: 10)
+
+router2.00-00             134   0x00000003  0xceae    1037    0/0/0
+  Protocols Supported: IPv4
+  Area Address: 49.0001
+  Hostname: router2
+  TE Router ID: 10.10.10.2
+  Router Capability: 10.10.10.2 , D:0, S:0
+  Extended Reachability: 1000.0000.1001.00 (Metric: 10)
+  Extended Reachability: 3000.0000.3000.00 (Metric: 10)
+  Extended Reachability: 2000.0000.2002.00 (Metric: 10)
+  IPv4 Interface Address: 10.10.10.2
+  Extended IP Reachability: 192.168.1.0/24 (Metric: 10)
+  Extended IP Reachability: 192.168.3.0/24 (Metric: 10)
+  Extended IP Reachability: 192.168.22.0/24 (Metric: 10)
+  Extended IP Reachability: 10.10.10.2/32 (Metric: 10)
+
+PC2.00-00                  83   0x00000003  0x5e33    1022    0/0/0
+  Protocols Supported: IPv4
+  Area Address: 49.0001
+  Hostname: PC2
+  TE Router ID: 192.168.22.4
+  Router Capability: 192.168.22.4 , D:0, S:0
+  Extended Reachability: 2000.0000.2000.00 (Metric: 10)
+  IPv4 Interface Address: 192.168.22.4
+  Extended IP Reachability: 192.168.22.0/24 (Metric: 10)
+
+router3.00-00             134   0x00000003  0xa7a3    1065    0/0/0
+  Protocols Supported: IPv4
+  Area Address: 49.0001
+  Hostname: router3
+  TE Router ID: 10.10.10.3
+  Router Capability: 10.10.10.3 , D:0, S:0
+  Extended Reachability: 1000.0000.1001.00 (Metric: 10)
+  Extended Reachability: 2000.0000.2000.00 (Metric: 10)
+  Extended Reachability: 3000.0000.3003.00 (Metric: 10)
+  IPv4 Interface Address: 10.10.10.3
+  Extended IP Reachability: 192.168.2.0/24 (Metric: 10)
+  Extended IP Reachability: 192.168.3.0/24 (Metric: 10)
+  Extended IP Reachability: 192.168.33.0/24 (Metric: 10)
+  Extended IP Reachability: 10.10.10.3/32 (Metric: 10)
+
+PC3.00-00            *     83   0x00000003  0xa082    1070    0/0/0
+  Protocols Supported: IPv4
+  Area Address: 49.0001
+  Hostname: PC3
+  TE Router ID: 192.168.33.4
+  Router Capability: 192.168.33.4 , D:0, S:0
+  Extended Reachability: 3000.0000.3000.00 (Metric: 10)
+  IPv4 Interface Address: 192.168.33.4
+  Extended IP Reachability: 192.168.33.0/24 (Metric: 10)
+
+    6 LSPs

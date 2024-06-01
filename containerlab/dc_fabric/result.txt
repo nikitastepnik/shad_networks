@@ -1,0 +1,1296 @@
+Data center fabric with the following topology:
+  User ports count: 500
+  Oversubscription coeff: 1
+  Fabric with super spines: False
+  Node: Leaf, count: 11, type: 48x10G, cost: 110000
+  Node: Spine, count: 2, type: 32x100G, cost: 40000
+  Node: Transiver, count: 110, type: 100G, cost: 110000
+  Fabric total cost: 260000
+
+Data center fabric with the following topology:
+  User ports count: 500
+  Oversubscription coeff: 1
+  Fabric with super spines: False
+  Node: Leaf, count: 11, type: 48x10G, cost: 110000
+  Node: Spine, count: 2, type: 64x100G, cost: 70000
+  Node: Transiver, count: 110, type: 100G, cost: 110000
+  Fabric total cost: 290000
+
+Data center fabric with the following topology:
+  User ports count: 500
+  Oversubscription coeff: 1
+  Fabric with super spines: False
+  Node: Leaf, count: 11, type: 48x25G, cost: 110000
+  Node: Spine, count: 5, type: 32x100G, cost: 100000
+  Node: Transiver, count: 264, type: 100G, cost: 264000
+  Fabric total cost: 474000
+
+Data center fabric with the following topology:
+  User ports count: 500
+  Oversubscription coeff: 1
+  Fabric with super spines: False
+  Node: Leaf, count: 11, type: 48x25G, cost: 110000
+  Node: Spine, count: 3, type: 64x100G, cost: 105000
+  Node: Transiver, count: 264, type: 100G, cost: 264000
+  Fabric total cost: 479000
+
+Data center fabric with the following topology:
+  User ports count: 500
+  Oversubscription coeff: 2
+  Fabric with super spines: False
+  Node: Leaf, count: 11, type: 48x10G, cost: 110000
+  Node: Spine, count: 2, type: 32x100G, cost: 40000
+  Node: Transiver, count: 66, type: 100G, cost: 66000
+  Fabric total cost: 216000
+
+Data center fabric with the following topology:
+  User ports count: 500
+  Oversubscription coeff: 2
+  Fabric with super spines: False
+  Node: Leaf, count: 11, type: 48x10G, cost: 110000
+  Node: Spine, count: 2, type: 64x100G, cost: 70000
+  Node: Transiver, count: 66, type: 100G, cost: 66000
+  Fabric total cost: 246000
+
+Data center fabric with the following topology:
+  User ports count: 500
+  Oversubscription coeff: 2
+  Fabric with super spines: False
+  Node: Leaf, count: 11, type: 48x25G, cost: 110000
+  Node: Spine, count: 3, type: 32x100G, cost: 60000
+  Node: Transiver, count: 132, type: 100G, cost: 132000
+  Fabric total cost: 302000
+
+Data center fabric with the following topology:
+  User ports count: 500
+  Oversubscription coeff: 2
+  Fabric with super spines: False
+  Node: Leaf, count: 11, type: 48x25G, cost: 110000
+  Node: Spine, count: 2, type: 64x100G, cost: 70000
+  Node: Transiver, count: 132, type: 100G, cost: 132000
+  Fabric total cost: 312000
+
+Data center fabric with the following topology:
+  User ports count: 500
+  Oversubscription coeff: 3
+  Fabric with super spines: False
+  Node: Leaf, count: 11, type: 48x10G, cost: 110000
+  Node: Spine, count: 2, type: 32x100G, cost: 40000
+  Node: Transiver, count: 44, type: 100G, cost: 44000
+  Fabric total cost: 194000
+
+Data center fabric with the following topology:
+  User ports count: 500
+  Oversubscription coeff: 3
+  Fabric with super spines: False
+  Node: Leaf, count: 11, type: 48x10G, cost: 110000
+  Node: Spine, count: 2, type: 64x100G, cost: 70000
+  Node: Transiver, count: 44, type: 100G, cost: 44000
+  Fabric total cost: 224000
+
+Data center fabric with the following topology:
+  User ports count: 500
+  Oversubscription coeff: 3
+  Fabric with super spines: False
+  Node: Leaf, count: 11, type: 48x25G, cost: 110000
+  Node: Spine, count: 2, type: 32x100G, cost: 40000
+  Node: Transiver, count: 88, type: 100G, cost: 88000
+  Fabric total cost: 238000
+
+Data center fabric with the following topology:
+  User ports count: 500
+  Oversubscription coeff: 3
+  Fabric with super spines: False
+  Node: Leaf, count: 11, type: 48x25G, cost: 110000
+  Node: Spine, count: 2, type: 64x100G, cost: 70000
+  Node: Transiver, count: 88, type: 100G, cost: 88000
+  Fabric total cost: 268000
+
+Data center fabric with the following topology:
+  User ports count: 500
+  Oversubscription coeff: 4
+  Fabric with super spines: False
+  Node: Leaf, count: 11, type: 48x10G, cost: 110000
+  Node: Spine, count: 2, type: 32x100G, cost: 40000
+  Node: Transiver, count: 44, type: 100G, cost: 44000
+  Fabric total cost: 194000
+
+Data center fabric with the following topology:
+  User ports count: 500
+  Oversubscription coeff: 4
+  Fabric with super spines: False
+  Node: Leaf, count: 11, type: 48x10G, cost: 110000
+  Node: Spine, count: 2, type: 64x100G, cost: 70000
+  Node: Transiver, count: 44, type: 100G, cost: 44000
+  Fabric total cost: 224000
+
+Data center fabric with the following topology:
+  User ports count: 500
+  Oversubscription coeff: 4
+  Fabric with super spines: False
+  Node: Leaf, count: 11, type: 48x25G, cost: 110000
+  Node: Spine, count: 2, type: 32x100G, cost: 40000
+  Node: Transiver, count: 66, type: 100G, cost: 66000
+  Fabric total cost: 216000
+
+Data center fabric with the following topology:
+  User ports count: 500
+  Oversubscription coeff: 4
+  Fabric with super spines: False
+  Node: Leaf, count: 11, type: 48x25G, cost: 110000
+  Node: Spine, count: 2, type: 64x100G, cost: 70000
+  Node: Transiver, count: 66, type: 100G, cost: 66000
+  Fabric total cost: 246000
+
+Data center fabric with the following topology:
+  User ports count: 1000
+  Oversubscription coeff: 1
+  Fabric with super spines: False
+  Node: Leaf, count: 21, type: 48x10G, cost: 210000
+  Node: Spine, count: 4, type: 32x100G, cost: 80000
+  Node: Transiver, count: 210, type: 100G, cost: 210000
+  Fabric total cost: 500000
+
+Data center fabric with the following topology:
+  User ports count: 1000
+  Oversubscription coeff: 1
+  Fabric with super spines: False
+  Node: Leaf, count: 21, type: 48x10G, cost: 210000
+  Node: Spine, count: 2, type: 64x100G, cost: 70000
+  Node: Transiver, count: 210, type: 100G, cost: 210000
+  Fabric total cost: 490000
+
+Data center fabric with the following topology:
+  User ports count: 1000
+  Oversubscription coeff: 1
+  Fabric with super spines: False
+  Node: Leaf, count: 21, type: 48x25G, cost: 210000
+  Node: Spine, count: 8, type: 32x100G, cost: 160000
+  Node: Transiver, count: 504, type: 100G, cost: 504000
+  Fabric total cost: 874000
+
+Data center fabric with the following topology:
+  User ports count: 1000
+  Oversubscription coeff: 1
+  Fabric with super spines: False
+  Node: Leaf, count: 21, type: 48x25G, cost: 210000
+  Node: Spine, count: 4, type: 64x100G, cost: 140000
+  Node: Transiver, count: 504, type: 100G, cost: 504000
+  Fabric total cost: 854000
+
+Data center fabric with the following topology:
+  User ports count: 1000
+  Oversubscription coeff: 2
+  Fabric with super spines: False
+  Node: Leaf, count: 21, type: 48x10G, cost: 210000
+  Node: Spine, count: 2, type: 32x100G, cost: 40000
+  Node: Transiver, count: 126, type: 100G, cost: 126000
+  Fabric total cost: 376000
+
+Data center fabric with the following topology:
+  User ports count: 1000
+  Oversubscription coeff: 2
+  Fabric with super spines: False
+  Node: Leaf, count: 21, type: 48x10G, cost: 210000
+  Node: Spine, count: 2, type: 64x100G, cost: 70000
+  Node: Transiver, count: 126, type: 100G, cost: 126000
+  Fabric total cost: 406000
+
+Data center fabric with the following topology:
+  User ports count: 1000
+  Oversubscription coeff: 2
+  Fabric with super spines: False
+  Node: Leaf, count: 21, type: 48x25G, cost: 210000
+  Node: Spine, count: 4, type: 32x100G, cost: 80000
+  Node: Transiver, count: 252, type: 100G, cost: 252000
+  Fabric total cost: 542000
+
+Data center fabric with the following topology:
+  User ports count: 1000
+  Oversubscription coeff: 2
+  Fabric with super spines: False
+  Node: Leaf, count: 21, type: 48x25G, cost: 210000
+  Node: Spine, count: 2, type: 64x100G, cost: 70000
+  Node: Transiver, count: 252, type: 100G, cost: 252000
+  Fabric total cost: 532000
+
+Data center fabric with the following topology:
+  User ports count: 1000
+  Oversubscription coeff: 3
+  Fabric with super spines: False
+  Node: Leaf, count: 21, type: 48x10G, cost: 210000
+  Node: Spine, count: 2, type: 32x100G, cost: 40000
+  Node: Transiver, count: 84, type: 100G, cost: 84000
+  Fabric total cost: 334000
+
+Data center fabric with the following topology:
+  User ports count: 1000
+  Oversubscription coeff: 3
+  Fabric with super spines: False
+  Node: Leaf, count: 21, type: 48x10G, cost: 210000
+  Node: Spine, count: 2, type: 64x100G, cost: 70000
+  Node: Transiver, count: 84, type: 100G, cost: 84000
+  Fabric total cost: 364000
+
+Data center fabric with the following topology:
+  User ports count: 1000
+  Oversubscription coeff: 3
+  Fabric with super spines: False
+  Node: Leaf, count: 21, type: 48x25G, cost: 210000
+  Node: Spine, count: 3, type: 32x100G, cost: 60000
+  Node: Transiver, count: 168, type: 100G, cost: 168000
+  Fabric total cost: 438000
+
+Data center fabric with the following topology:
+  User ports count: 1000
+  Oversubscription coeff: 3
+  Fabric with super spines: False
+  Node: Leaf, count: 21, type: 48x25G, cost: 210000
+  Node: Spine, count: 2, type: 64x100G, cost: 70000
+  Node: Transiver, count: 168, type: 100G, cost: 168000
+  Fabric total cost: 448000
+
+Data center fabric with the following topology:
+  User ports count: 1000
+  Oversubscription coeff: 4
+  Fabric with super spines: False
+  Node: Leaf, count: 21, type: 48x10G, cost: 210000
+  Node: Spine, count: 2, type: 32x100G, cost: 40000
+  Node: Transiver, count: 84, type: 100G, cost: 84000
+  Fabric total cost: 334000
+
+Data center fabric with the following topology:
+  User ports count: 1000
+  Oversubscription coeff: 4
+  Fabric with super spines: False
+  Node: Leaf, count: 21, type: 48x10G, cost: 210000
+  Node: Spine, count: 2, type: 64x100G, cost: 70000
+  Node: Transiver, count: 84, type: 100G, cost: 84000
+  Fabric total cost: 364000
+
+Data center fabric with the following topology:
+  User ports count: 1000
+  Oversubscription coeff: 4
+  Fabric with super spines: False
+  Node: Leaf, count: 21, type: 48x25G, cost: 210000
+  Node: Spine, count: 2, type: 32x100G, cost: 40000
+  Node: Transiver, count: 126, type: 100G, cost: 126000
+  Fabric total cost: 376000
+
+Data center fabric with the following topology:
+  User ports count: 1000
+  Oversubscription coeff: 4
+  Fabric with super spines: False
+  Node: Leaf, count: 21, type: 48x25G, cost: 210000
+  Node: Spine, count: 2, type: 64x100G, cost: 70000
+  Node: Transiver, count: 126, type: 100G, cost: 126000
+  Fabric total cost: 406000
+
+Data center fabric with the following topology:
+  User ports count: 1500
+  Oversubscription coeff: 1
+  Fabric with super spines: False
+  Node: Leaf, count: 32, type: 48x10G, cost: 320000
+  Node: Spine, count: 5, type: 32x100G, cost: 100000
+  Node: Transiver, count: 320, type: 100G, cost: 320000
+  Fabric total cost: 740000
+
+Data center fabric with the following topology:
+  User ports count: 1500
+  Oversubscription coeff: 1
+  Fabric with super spines: False
+  Node: Leaf, count: 32, type: 48x10G, cost: 320000
+  Node: Spine, count: 3, type: 64x100G, cost: 105000
+  Node: Transiver, count: 320, type: 100G, cost: 320000
+  Fabric total cost: 745000
+
+Data center fabric with the following topology:
+  User ports count: 1500
+  Oversubscription coeff: 1
+  Fabric with super spines: False
+  Node: Leaf, count: 32, type: 48x25G, cost: 320000
+  Node: Spine, count: 12, type: 32x100G, cost: 240000
+  Node: Transiver, count: 768, type: 100G, cost: 768000
+  Fabric total cost: 1328000
+
+Data center fabric with the following topology:
+  User ports count: 1500
+  Oversubscription coeff: 1
+  Fabric with super spines: False
+  Node: Leaf, count: 32, type: 48x25G, cost: 320000
+  Node: Spine, count: 6, type: 64x100G, cost: 210000
+  Node: Transiver, count: 768, type: 100G, cost: 768000
+  Fabric total cost: 1298000
+
+Data center fabric with the following topology:
+  User ports count: 1500
+  Oversubscription coeff: 2
+  Fabric with super spines: False
+  Node: Leaf, count: 32, type: 48x10G, cost: 320000
+  Node: Spine, count: 3, type: 32x100G, cost: 60000
+  Node: Transiver, count: 192, type: 100G, cost: 192000
+  Fabric total cost: 572000
+
+Data center fabric with the following topology:
+  User ports count: 1500
+  Oversubscription coeff: 2
+  Fabric with super spines: False
+  Node: Leaf, count: 32, type: 48x10G, cost: 320000
+  Node: Spine, count: 2, type: 64x100G, cost: 70000
+  Node: Transiver, count: 192, type: 100G, cost: 192000
+  Fabric total cost: 582000
+
+Data center fabric with the following topology:
+  User ports count: 1500
+  Oversubscription coeff: 2
+  Fabric with super spines: False
+  Node: Leaf, count: 32, type: 48x25G, cost: 320000
+  Node: Spine, count: 6, type: 32x100G, cost: 120000
+  Node: Transiver, count: 384, type: 100G, cost: 384000
+  Fabric total cost: 824000
+
+Data center fabric with the following topology:
+  User ports count: 1500
+  Oversubscription coeff: 2
+  Fabric with super spines: False
+  Node: Leaf, count: 32, type: 48x25G, cost: 320000
+  Node: Spine, count: 3, type: 64x100G, cost: 105000
+  Node: Transiver, count: 384, type: 100G, cost: 384000
+  Fabric total cost: 809000
+
+Data center fabric with the following topology:
+  User ports count: 1500
+  Oversubscription coeff: 3
+  Fabric with super spines: False
+  Node: Leaf, count: 32, type: 48x10G, cost: 320000
+  Node: Spine, count: 2, type: 32x100G, cost: 40000
+  Node: Transiver, count: 128, type: 100G, cost: 128000
+  Fabric total cost: 488000
+
+Data center fabric with the following topology:
+  User ports count: 1500
+  Oversubscription coeff: 3
+  Fabric with super spines: False
+  Node: Leaf, count: 32, type: 48x10G, cost: 320000
+  Node: Spine, count: 2, type: 64x100G, cost: 70000
+  Node: Transiver, count: 128, type: 100G, cost: 128000
+  Fabric total cost: 518000
+
+Data center fabric with the following topology:
+  User ports count: 1500
+  Oversubscription coeff: 3
+  Fabric with super spines: False
+  Node: Leaf, count: 32, type: 48x25G, cost: 320000
+  Node: Spine, count: 4, type: 32x100G, cost: 80000
+  Node: Transiver, count: 256, type: 100G, cost: 256000
+  Fabric total cost: 656000
+
+Data center fabric with the following topology:
+  User ports count: 1500
+  Oversubscription coeff: 3
+  Fabric with super spines: False
+  Node: Leaf, count: 32, type: 48x25G, cost: 320000
+  Node: Spine, count: 2, type: 64x100G, cost: 70000
+  Node: Transiver, count: 256, type: 100G, cost: 256000
+  Fabric total cost: 646000
+
+Data center fabric with the following topology:
+  User ports count: 1500
+  Oversubscription coeff: 4
+  Fabric with super spines: False
+  Node: Leaf, count: 32, type: 48x10G, cost: 320000
+  Node: Spine, count: 2, type: 32x100G, cost: 40000
+  Node: Transiver, count: 128, type: 100G, cost: 128000
+  Fabric total cost: 488000
+
+Data center fabric with the following topology:
+  User ports count: 1500
+  Oversubscription coeff: 4
+  Fabric with super spines: False
+  Node: Leaf, count: 32, type: 48x10G, cost: 320000
+  Node: Spine, count: 2, type: 64x100G, cost: 70000
+  Node: Transiver, count: 128, type: 100G, cost: 128000
+  Fabric total cost: 518000
+
+Data center fabric with the following topology:
+  User ports count: 1500
+  Oversubscription coeff: 4
+  Fabric with super spines: False
+  Node: Leaf, count: 32, type: 48x25G, cost: 320000
+  Node: Spine, count: 3, type: 32x100G, cost: 60000
+  Node: Transiver, count: 192, type: 100G, cost: 192000
+  Fabric total cost: 572000
+
+Data center fabric with the following topology:
+  User ports count: 1500
+  Oversubscription coeff: 4
+  Fabric with super spines: False
+  Node: Leaf, count: 32, type: 48x25G, cost: 320000
+  Node: Spine, count: 2, type: 64x100G, cost: 70000
+  Node: Transiver, count: 192, type: 100G, cost: 192000
+  Fabric total cost: 582000
+
+Data center fabric with the following topology:
+  User ports count: 2000
+  Oversubscription coeff: 1
+  Fabric with super spines: True
+  Node: Leaf, count: 42, type: 48x10G, cost: 420000
+  Node: Spine, count: 3, type: 32x100G, cost: 60000
+  Node: Transiver, count: 424, type: 100G, cost: 424000
+  Fabric total cost: 904000
+
+Data center fabric with the following topology:
+  User ports count: 2000
+  Oversubscription coeff: 1
+  Fabric with super spines: False
+  Node: Leaf, count: 42, type: 48x10G, cost: 420000
+  Node: Spine, count: 4, type: 64x100G, cost: 140000
+  Node: Transiver, count: 420, type: 100G, cost: 420000
+  Fabric total cost: 980000
+
+Data center fabric with the following topology:
+  User ports count: 2000
+  Oversubscription coeff: 1
+  Fabric with super spines: True
+  Node: Leaf, count: 42, type: 48x25G, cost: 420000
+  Node: Spine, count: 6, type: 32x100G, cost: 120000
+  Node: Transiver, count: 1024, type: 100G, cost: 1024000
+  Fabric total cost: 1564000
+
+Data center fabric with the following topology:
+  User ports count: 2000
+  Oversubscription coeff: 1
+  Fabric with super spines: False
+  Node: Leaf, count: 42, type: 48x25G, cost: 420000
+  Node: Spine, count: 8, type: 64x100G, cost: 280000
+  Node: Transiver, count: 1008, type: 100G, cost: 1008000
+  Fabric total cost: 1708000
+
+Data center fabric with the following topology:
+  User ports count: 2000
+  Oversubscription coeff: 2
+  Fabric with super spines: True
+  Node: Leaf, count: 42, type: 48x10G, cost: 420000
+  Node: Spine, count: 1, type: 32x100G, cost: 20000
+  Node: Transiver, count: 252, type: 100G, cost: 252000
+  Fabric total cost: 692000
+
+Data center fabric with the following topology:
+  User ports count: 2000
+  Oversubscription coeff: 2
+  Fabric with super spines: False
+  Node: Leaf, count: 42, type: 48x10G, cost: 420000
+  Node: Spine, count: 2, type: 64x100G, cost: 70000
+  Node: Transiver, count: 252, type: 100G, cost: 252000
+  Fabric total cost: 742000
+
+Data center fabric with the following topology:
+  User ports count: 2000
+  Oversubscription coeff: 2
+  Fabric with super spines: True
+  Node: Leaf, count: 42, type: 48x25G, cost: 420000
+  Node: Spine, count: 3, type: 32x100G, cost: 60000
+  Node: Transiver, count: 508, type: 100G, cost: 508000
+  Fabric total cost: 988000
+
+Data center fabric with the following topology:
+  User ports count: 2000
+  Oversubscription coeff: 2
+  Fabric with super spines: False
+  Node: Leaf, count: 42, type: 48x25G, cost: 420000
+  Node: Spine, count: 4, type: 64x100G, cost: 140000
+  Node: Transiver, count: 504, type: 100G, cost: 504000
+  Fabric total cost: 1064000
+
+Data center fabric with the following topology:
+  User ports count: 2000
+  Oversubscription coeff: 3
+  Fabric with super spines: True
+  Node: Leaf, count: 42, type: 48x10G, cost: 420000
+  Node: Spine, count: 1, type: 32x100G, cost: 20000
+  Node: Transiver, count: 168, type: 100G, cost: 168000
+  Fabric total cost: 608000
+
+Data center fabric with the following topology:
+  User ports count: 2000
+  Oversubscription coeff: 3
+  Fabric with super spines: False
+  Node: Leaf, count: 42, type: 48x10G, cost: 420000
+  Node: Spine, count: 2, type: 64x100G, cost: 70000
+  Node: Transiver, count: 168, type: 100G, cost: 168000
+  Fabric total cost: 658000
+
+Data center fabric with the following topology:
+  User ports count: 2000
+  Oversubscription coeff: 3
+  Fabric with super spines: True
+  Node: Leaf, count: 42, type: 48x25G, cost: 420000
+  Node: Spine, count: 3, type: 32x100G, cost: 60000
+  Node: Transiver, count: 340, type: 100G, cost: 340000
+  Fabric total cost: 820000
+
+Data center fabric with the following topology:
+  User ports count: 2000
+  Oversubscription coeff: 3
+  Fabric with super spines: False
+  Node: Leaf, count: 42, type: 48x25G, cost: 420000
+  Node: Spine, count: 3, type: 64x100G, cost: 105000
+  Node: Transiver, count: 336, type: 100G, cost: 336000
+  Fabric total cost: 861000
+
+Data center fabric with the following topology:
+  User ports count: 2000
+  Oversubscription coeff: 4
+  Fabric with super spines: True
+  Node: Leaf, count: 42, type: 48x10G, cost: 420000
+  Node: Spine, count: 1, type: 32x100G, cost: 20000
+  Node: Transiver, count: 168, type: 100G, cost: 168000
+  Fabric total cost: 608000
+
+Data center fabric with the following topology:
+  User ports count: 2000
+  Oversubscription coeff: 4
+  Fabric with super spines: False
+  Node: Leaf, count: 42, type: 48x10G, cost: 420000
+  Node: Spine, count: 2, type: 64x100G, cost: 70000
+  Node: Transiver, count: 168, type: 100G, cost: 168000
+  Fabric total cost: 658000
+
+Data center fabric with the following topology:
+  User ports count: 2000
+  Oversubscription coeff: 4
+  Fabric with super spines: True
+  Node: Leaf, count: 42, type: 48x25G, cost: 420000
+  Node: Spine, count: 1, type: 32x100G, cost: 20000
+  Node: Transiver, count: 252, type: 100G, cost: 252000
+  Fabric total cost: 692000
+
+Data center fabric with the following topology:
+  User ports count: 2000
+  Oversubscription coeff: 4
+  Fabric with super spines: False
+  Node: Leaf, count: 42, type: 48x25G, cost: 420000
+  Node: Spine, count: 2, type: 64x100G, cost: 70000
+  Node: Transiver, count: 252, type: 100G, cost: 252000
+  Fabric total cost: 742000
+
+Data center fabric with the following topology:
+  User ports count: 3000
+  Oversubscription coeff: 1
+  Fabric with super spines: True
+  Node: Leaf, count: 63, type: 48x10G, cost: 630000
+  Node: Spine, count: 4, type: 32x100G, cost: 80000
+  Node: Transiver, count: 636, type: 100G, cost: 636000
+  Fabric total cost: 1346000
+
+Data center fabric with the following topology:
+  User ports count: 3000
+  Oversubscription coeff: 1
+  Fabric with super spines: False
+  Node: Leaf, count: 63, type: 48x10G, cost: 630000
+  Node: Spine, count: 5, type: 64x100G, cost: 175000
+  Node: Transiver, count: 630, type: 100G, cost: 630000
+  Fabric total cost: 1435000
+
+Data center fabric with the following topology:
+  User ports count: 3000
+  Oversubscription coeff: 1
+  Fabric with super spines: True
+  Node: Leaf, count: 63, type: 48x25G, cost: 630000
+  Node: Spine, count: 9, type: 32x100G, cost: 180000
+  Node: Transiver, count: 1548, type: 100G, cost: 1548000
+  Fabric total cost: 2358000
+
+Data center fabric with the following topology:
+  User ports count: 3000
+  Oversubscription coeff: 1
+  Fabric with super spines: False
+  Node: Leaf, count: 63, type: 48x25G, cost: 630000
+  Node: Spine, count: 12, type: 64x100G, cost: 420000
+  Node: Transiver, count: 1512, type: 100G, cost: 1512000
+  Fabric total cost: 2562000
+
+Data center fabric with the following topology:
+  User ports count: 3000
+  Oversubscription coeff: 2
+  Fabric with super spines: True
+  Node: Leaf, count: 63, type: 48x10G, cost: 630000
+  Node: Spine, count: 3, type: 32x100G, cost: 60000
+  Node: Transiver, count: 382, type: 100G, cost: 382000
+  Fabric total cost: 1072000
+
+Data center fabric with the following topology:
+  User ports count: 3000
+  Oversubscription coeff: 2
+  Fabric with super spines: False
+  Node: Leaf, count: 63, type: 48x10G, cost: 630000
+  Node: Spine, count: 3, type: 64x100G, cost: 105000
+  Node: Transiver, count: 378, type: 100G, cost: 378000
+  Fabric total cost: 1113000
+
+Data center fabric with the following topology:
+  User ports count: 3000
+  Oversubscription coeff: 2
+  Fabric with super spines: True
+  Node: Leaf, count: 63, type: 48x25G, cost: 630000
+  Node: Spine, count: 4, type: 32x100G, cost: 80000
+  Node: Transiver, count: 762, type: 100G, cost: 762000
+  Fabric total cost: 1472000
+
+Data center fabric with the following topology:
+  User ports count: 3000
+  Oversubscription coeff: 2
+  Fabric with super spines: False
+  Node: Leaf, count: 63, type: 48x25G, cost: 630000
+  Node: Spine, count: 6, type: 64x100G, cost: 210000
+  Node: Transiver, count: 756, type: 100G, cost: 756000
+  Fabric total cost: 1596000
+
+Data center fabric with the following topology:
+  User ports count: 3000
+  Oversubscription coeff: 3
+  Fabric with super spines: True
+  Node: Leaf, count: 63, type: 48x10G, cost: 630000
+  Node: Spine, count: 1, type: 32x100G, cost: 20000
+  Node: Transiver, count: 252, type: 100G, cost: 252000
+  Fabric total cost: 902000
+
+Data center fabric with the following topology:
+  User ports count: 3000
+  Oversubscription coeff: 3
+  Fabric with super spines: False
+  Node: Leaf, count: 63, type: 48x10G, cost: 630000
+  Node: Spine, count: 2, type: 64x100G, cost: 70000
+  Node: Transiver, count: 252, type: 100G, cost: 252000
+  Fabric total cost: 952000
+
+Data center fabric with the following topology:
+  User ports count: 3000
+  Oversubscription coeff: 3
+  Fabric with super spines: True
+  Node: Leaf, count: 63, type: 48x25G, cost: 630000
+  Node: Spine, count: 3, type: 32x100G, cost: 60000
+  Node: Transiver, count: 508, type: 100G, cost: 508000
+  Fabric total cost: 1198000
+
+Data center fabric with the following topology:
+  User ports count: 3000
+  Oversubscription coeff: 3
+  Fabric with super spines: False
+  Node: Leaf, count: 63, type: 48x25G, cost: 630000
+  Node: Spine, count: 4, type: 64x100G, cost: 140000
+  Node: Transiver, count: 504, type: 100G, cost: 504000
+  Fabric total cost: 1274000
+
+Data center fabric with the following topology:
+  User ports count: 3000
+  Oversubscription coeff: 4
+  Fabric with super spines: True
+  Node: Leaf, count: 63, type: 48x10G, cost: 630000
+  Node: Spine, count: 1, type: 32x100G, cost: 20000
+  Node: Transiver, count: 252, type: 100G, cost: 252000
+  Fabric total cost: 902000
+
+Data center fabric with the following topology:
+  User ports count: 3000
+  Oversubscription coeff: 4
+  Fabric with super spines: False
+  Node: Leaf, count: 63, type: 48x10G, cost: 630000
+  Node: Spine, count: 2, type: 64x100G, cost: 70000
+  Node: Transiver, count: 252, type: 100G, cost: 252000
+  Fabric total cost: 952000
+
+Data center fabric with the following topology:
+  User ports count: 3000
+  Oversubscription coeff: 4
+  Fabric with super spines: True
+  Node: Leaf, count: 63, type: 48x25G, cost: 630000
+  Node: Spine, count: 3, type: 32x100G, cost: 60000
+  Node: Transiver, count: 382, type: 100G, cost: 382000
+  Fabric total cost: 1072000
+
+Data center fabric with the following topology:
+  User ports count: 3000
+  Oversubscription coeff: 4
+  Fabric with super spines: False
+  Node: Leaf, count: 63, type: 48x25G, cost: 630000
+  Node: Spine, count: 3, type: 64x100G, cost: 105000
+  Node: Transiver, count: 378, type: 100G, cost: 378000
+  Fabric total cost: 1113000
+
+Data center fabric with the following topology:
+  User ports count: 4000
+  Oversubscription coeff: 1
+  Fabric with super spines: True
+  Node: Leaf, count: 84, type: 48x10G, cost: 840000
+  Node: Spine, count: 6, type: 32x100G, cost: 120000
+  Node: Transiver, count: 856, type: 100G, cost: 856000
+  Fabric total cost: 1816000
+
+Data center fabric with the following topology:
+  User ports count: 4000
+  Oversubscription coeff: 1
+  Fabric with super spines: True
+  Node: Leaf, count: 84, type: 48x10G, cost: 840000
+  Node: Spine, count: 3, type: 64x100G, cost: 105000
+  Node: Transiver, count: 844, type: 100G, cost: 844000
+  Fabric total cost: 1789000
+
+Data center fabric with the following topology:
+  User ports count: 4000
+  Oversubscription coeff: 1
+  Fabric with super spines: True
+  Node: Leaf, count: 84, type: 48x25G, cost: 840000
+  Node: Spine, count: 12, type: 32x100G, cost: 240000
+  Node: Transiver, count: 2080, type: 100G, cost: 2080000
+  Fabric total cost: 3160000
+
+Data center fabric with the following topology:
+  User ports count: 4000
+  Oversubscription coeff: 1
+  Fabric with super spines: True
+  Node: Leaf, count: 84, type: 48x25G, cost: 840000
+  Node: Spine, count: 6, type: 64x100G, cost: 210000
+  Node: Transiver, count: 2032, type: 100G, cost: 2032000
+  Fabric total cost: 3082000
+
+Data center fabric with the following topology:
+  User ports count: 4000
+  Oversubscription coeff: 2
+  Fabric with super spines: True
+  Node: Leaf, count: 84, type: 48x10G, cost: 840000
+  Node: Spine, count: 3, type: 32x100G, cost: 60000
+  Node: Transiver, count: 508, type: 100G, cost: 508000
+  Fabric total cost: 1408000
+
+Data center fabric with the following topology:
+  User ports count: 4000
+  Oversubscription coeff: 2
+  Fabric with super spines: True
+  Node: Leaf, count: 84, type: 48x10G, cost: 840000
+  Node: Spine, count: 1, type: 64x100G, cost: 35000
+  Node: Transiver, count: 504, type: 100G, cost: 504000
+  Fabric total cost: 1379000
+
+Data center fabric with the following topology:
+  User ports count: 4000
+  Oversubscription coeff: 2
+  Fabric with super spines: True
+  Node: Leaf, count: 84, type: 48x25G, cost: 840000
+  Node: Spine, count: 6, type: 32x100G, cost: 120000
+  Node: Transiver, count: 1024, type: 100G, cost: 1024000
+  Fabric total cost: 1984000
+
+Data center fabric with the following topology:
+  User ports count: 4000
+  Oversubscription coeff: 2
+  Fabric with super spines: True
+  Node: Leaf, count: 84, type: 48x25G, cost: 840000
+  Node: Spine, count: 3, type: 64x100G, cost: 105000
+  Node: Transiver, count: 1012, type: 100G, cost: 1012000
+  Fabric total cost: 1957000
+
+Data center fabric with the following topology:
+  User ports count: 4000
+  Oversubscription coeff: 3
+  Fabric with super spines: True
+  Node: Leaf, count: 84, type: 48x10G, cost: 840000
+  Node: Spine, count: 3, type: 32x100G, cost: 60000
+  Node: Transiver, count: 340, type: 100G, cost: 340000
+  Fabric total cost: 1240000
+
+Data center fabric with the following topology:
+  User ports count: 4000
+  Oversubscription coeff: 3
+  Fabric with super spines: True
+  Node: Leaf, count: 84, type: 48x10G, cost: 840000
+  Node: Spine, count: 1, type: 64x100G, cost: 35000
+  Node: Transiver, count: 336, type: 100G, cost: 336000
+  Fabric total cost: 1211000
+
+Data center fabric with the following topology:
+  User ports count: 4000
+  Oversubscription coeff: 3
+  Fabric with super spines: True
+  Node: Leaf, count: 84, type: 48x25G, cost: 840000
+  Node: Spine, count: 4, type: 32x100G, cost: 80000
+  Node: Transiver, count: 678, type: 100G, cost: 678000
+  Fabric total cost: 1598000
+
+Data center fabric with the following topology:
+  User ports count: 4000
+  Oversubscription coeff: 3
+  Fabric with super spines: True
+  Node: Leaf, count: 84, type: 48x25G, cost: 840000
+  Node: Spine, count: 3, type: 64x100G, cost: 105000
+  Node: Transiver, count: 676, type: 100G, cost: 676000
+  Fabric total cost: 1621000
+
+Data center fabric with the following topology:
+  User ports count: 4000
+  Oversubscription coeff: 4
+  Fabric with super spines: True
+  Node: Leaf, count: 84, type: 48x10G, cost: 840000
+  Node: Spine, count: 3, type: 32x100G, cost: 60000
+  Node: Transiver, count: 340, type: 100G, cost: 340000
+  Fabric total cost: 1240000
+
+Data center fabric with the following topology:
+  User ports count: 4000
+  Oversubscription coeff: 4
+  Fabric with super spines: True
+  Node: Leaf, count: 84, type: 48x10G, cost: 840000
+  Node: Spine, count: 1, type: 64x100G, cost: 35000
+  Node: Transiver, count: 336, type: 100G, cost: 336000
+  Fabric total cost: 1211000
+
+Data center fabric with the following topology:
+  User ports count: 4000
+  Oversubscription coeff: 4
+  Fabric with super spines: True
+  Node: Leaf, count: 84, type: 48x25G, cost: 840000
+  Node: Spine, count: 3, type: 32x100G, cost: 60000
+  Node: Transiver, count: 508, type: 100G, cost: 508000
+  Fabric total cost: 1408000
+
+Data center fabric with the following topology:
+  User ports count: 4000
+  Oversubscription coeff: 4
+  Fabric with super spines: True
+  Node: Leaf, count: 84, type: 48x25G, cost: 840000
+  Node: Spine, count: 1, type: 64x100G, cost: 35000
+  Node: Transiver, count: 504, type: 100G, cost: 504000
+  Fabric total cost: 1379000
+
+Data center fabric with the following topology:
+  User ports count: 5000
+  Oversubscription coeff: 1
+  Fabric with super spines: True
+  Node: Leaf, count: 105, type: 48x10G, cost: 1050000
+  Node: Spine, count: 7, type: 32x100G, cost: 140000
+  Node: Transiver, count: 1070, type: 100G, cost: 1070000
+  Fabric total cost: 2260000
+
+Data center fabric with the following topology:
+  User ports count: 5000
+  Oversubscription coeff: 1
+  Fabric with super spines: True
+  Node: Leaf, count: 105, type: 48x10G, cost: 1050000
+  Node: Spine, count: 4, type: 64x100G, cost: 140000
+  Node: Transiver, count: 1056, type: 100G, cost: 1056000
+  Fabric total cost: 2246000
+
+Data center fabric with the following topology:
+  User ports count: 5000
+  Oversubscription coeff: 1
+  Fabric with super spines: True
+  Node: Leaf, count: 105, type: 48x25G, cost: 1050000
+  Node: Spine, count: 15, type: 32x100G, cost: 300000
+  Node: Transiver, count: 2620, type: 100G, cost: 2620000
+  Fabric total cost: 3970000
+
+Data center fabric with the following topology:
+  User ports count: 5000
+  Oversubscription coeff: 1
+  Fabric with super spines: True
+  Node: Leaf, count: 105, type: 48x25G, cost: 1050000
+  Node: Spine, count: 7, type: 64x100G, cost: 245000
+  Node: Transiver, count: 2540, type: 100G, cost: 2540000
+  Fabric total cost: 3835000
+
+Data center fabric with the following topology:
+  User ports count: 5000
+  Oversubscription coeff: 2
+  Fabric with super spines: True
+  Node: Leaf, count: 105, type: 48x10G, cost: 1050000
+  Node: Spine, count: 4, type: 32x100G, cost: 80000
+  Node: Transiver, count: 636, type: 100G, cost: 636000
+  Fabric total cost: 1766000
+
+Data center fabric with the following topology:
+  User ports count: 5000
+  Oversubscription coeff: 2
+  Fabric with super spines: True
+  Node: Leaf, count: 105, type: 48x10G, cost: 1050000
+  Node: Spine, count: 3, type: 64x100G, cost: 105000
+  Node: Transiver, count: 634, type: 100G, cost: 634000
+  Fabric total cost: 1789000
+
+Data center fabric with the following topology:
+  User ports count: 5000
+  Oversubscription coeff: 2
+  Fabric with super spines: True
+  Node: Leaf, count: 105, type: 48x25G, cost: 1050000
+  Node: Spine, count: 7, type: 32x100G, cost: 140000
+  Node: Transiver, count: 1280, type: 100G, cost: 1280000
+  Fabric total cost: 2470000
+
+Data center fabric with the following topology:
+  User ports count: 5000
+  Oversubscription coeff: 2
+  Fabric with super spines: True
+  Node: Leaf, count: 105, type: 48x25G, cost: 1050000
+  Node: Spine, count: 4, type: 64x100G, cost: 140000
+  Node: Transiver, count: 1266, type: 100G, cost: 1266000
+  Fabric total cost: 2456000
+
+Data center fabric with the following topology:
+  User ports count: 5000
+  Oversubscription coeff: 3
+  Fabric with super spines: True
+  Node: Leaf, count: 105, type: 48x10G, cost: 1050000
+  Node: Spine, count: 3, type: 32x100G, cost: 60000
+  Node: Transiver, count: 424, type: 100G, cost: 424000
+  Fabric total cost: 1534000
+
+Data center fabric with the following topology:
+  User ports count: 5000
+  Oversubscription coeff: 3
+  Fabric with super spines: True
+  Node: Leaf, count: 105, type: 48x10G, cost: 1050000
+  Node: Spine, count: 1, type: 64x100G, cost: 35000
+  Node: Transiver, count: 420, type: 100G, cost: 420000
+  Fabric total cost: 1505000
+
+Data center fabric with the following topology:
+  User ports count: 5000
+  Oversubscription coeff: 3
+  Fabric with super spines: True
+  Node: Leaf, count: 105, type: 48x25G, cost: 1050000
+  Node: Spine, count: 6, type: 32x100G, cost: 120000
+  Node: Transiver, count: 856, type: 100G, cost: 856000
+  Fabric total cost: 2026000
+
+Data center fabric with the following topology:
+  User ports count: 5000
+  Oversubscription coeff: 3
+  Fabric with super spines: True
+  Node: Leaf, count: 105, type: 48x25G, cost: 1050000
+  Node: Spine, count: 3, type: 64x100G, cost: 105000
+  Node: Transiver, count: 844, type: 100G, cost: 844000
+  Fabric total cost: 1999000
+
+Data center fabric with the following topology:
+  User ports count: 5000
+  Oversubscription coeff: 4
+  Fabric with super spines: True
+  Node: Leaf, count: 105, type: 48x10G, cost: 1050000
+  Node: Spine, count: 3, type: 32x100G, cost: 60000
+  Node: Transiver, count: 424, type: 100G, cost: 424000
+  Fabric total cost: 1534000
+
+Data center fabric with the following topology:
+  User ports count: 5000
+  Oversubscription coeff: 4
+  Fabric with super spines: True
+  Node: Leaf, count: 105, type: 48x10G, cost: 1050000
+  Node: Spine, count: 1, type: 64x100G, cost: 35000
+  Node: Transiver, count: 420, type: 100G, cost: 420000
+  Fabric total cost: 1505000
+
+Data center fabric with the following topology:
+  User ports count: 5000
+  Oversubscription coeff: 4
+  Fabric with super spines: True
+  Node: Leaf, count: 105, type: 48x25G, cost: 1050000
+  Node: Spine, count: 4, type: 32x100G, cost: 80000
+  Node: Transiver, count: 636, type: 100G, cost: 636000
+  Fabric total cost: 1766000
+
+Data center fabric with the following topology:
+  User ports count: 5000
+  Oversubscription coeff: 4
+  Fabric with super spines: True
+  Node: Leaf, count: 105, type: 48x25G, cost: 1050000
+  Node: Spine, count: 3, type: 64x100G, cost: 105000
+  Node: Transiver, count: 634, type: 100G, cost: 634000
+  Fabric total cost: 1789000
+
+Data center fabric with the following topology:
+  User ports count: 8000
+  Oversubscription coeff: 1
+  Fabric with super spines: True
+  Node: Leaf, count: 167, type: 48x10G, cost: 1670000
+  Node: Spine, count: 10, type: 32x100G, cost: 200000
+  Node: Transiver, count: 1712, type: 100G, cost: 1712000
+  Fabric total cost: 3582000
+
+Data center fabric with the following topology:
+  User ports count: 8000
+  Oversubscription coeff: 1
+  Fabric with super spines: True
+  Node: Leaf, count: 167, type: 48x10G, cost: 1670000
+  Node: Spine, count: 6, type: 64x100G, cost: 210000
+  Node: Transiver, count: 1686, type: 100G, cost: 1686000
+  Fabric total cost: 3566000
+
+Data center fabric with the following topology:
+  User ports count: 8000
+  Oversubscription coeff: 1
+  Fabric with super spines: True
+  Node: Leaf, count: 167, type: 48x25G, cost: 1670000
+  Node: Spine, count: 24, type: 32x100G, cost: 480000
+  Node: Transiver, count: 4264, type: 100G, cost: 4264000
+  Fabric total cost: 6414000
+
+Data center fabric with the following topology:
+  User ports count: 8000
+  Oversubscription coeff: 1
+  Fabric with super spines: True
+  Node: Leaf, count: 167, type: 48x25G, cost: 1670000
+  Node: Spine, count: 12, type: 64x100G, cost: 420000
+  Node: Transiver, count: 4072, type: 100G, cost: 4072000
+  Fabric total cost: 6162000
+
+Data center fabric with the following topology:
+  User ports count: 8000
+  Oversubscription coeff: 2
+  Fabric with super spines: True
+  Node: Leaf, count: 167, type: 48x10G, cost: 1670000
+  Node: Spine, count: 6, type: 32x100G, cost: 120000
+  Node: Transiver, count: 1018, type: 100G, cost: 1018000
+  Fabric total cost: 2808000
+
+Data center fabric with the following topology:
+  User ports count: 8000
+  Oversubscription coeff: 2
+  Fabric with super spines: True
+  Node: Leaf, count: 167, type: 48x10G, cost: 1670000
+  Node: Spine, count: 3, type: 64x100G, cost: 105000
+  Node: Transiver, count: 1006, type: 100G, cost: 1006000
+  Fabric total cost: 2781000
+
+Data center fabric with the following topology:
+  User ports count: 8000
+  Oversubscription coeff: 2
+  Fabric with super spines: True
+  Node: Leaf, count: 167, type: 48x25G, cost: 1670000
+  Node: Spine, count: 12, type: 32x100G, cost: 240000
+  Node: Transiver, count: 2068, type: 100G, cost: 2068000
+  Fabric total cost: 3978000
+
+Data center fabric with the following topology:
+  User ports count: 8000
+  Oversubscription coeff: 2
+  Fabric with super spines: True
+  Node: Leaf, count: 167, type: 48x25G, cost: 1670000
+  Node: Spine, count: 6, type: 64x100G, cost: 210000
+  Node: Transiver, count: 2020, type: 100G, cost: 2020000
+  Fabric total cost: 3900000
+
+Data center fabric with the following topology:
+  User ports count: 8000
+  Oversubscription coeff: 3
+  Fabric with super spines: True
+  Node: Leaf, count: 167, type: 48x10G, cost: 1670000
+  Node: Spine, count: 4, type: 32x100G, cost: 80000
+  Node: Transiver, count: 674, type: 100G, cost: 674000
+  Fabric total cost: 2424000
+
+Data center fabric with the following topology:
+  User ports count: 8000
+  Oversubscription coeff: 3
+  Fabric with super spines: True
+  Node: Leaf, count: 167, type: 48x10G, cost: 1670000
+  Node: Spine, count: 3, type: 64x100G, cost: 105000
+  Node: Transiver, count: 672, type: 100G, cost: 672000
+  Fabric total cost: 2447000
+
+Data center fabric with the following topology:
+  User ports count: 8000
+  Oversubscription coeff: 3
+  Fabric with super spines: True
+  Node: Leaf, count: 167, type: 48x25G, cost: 1670000
+  Node: Spine, count: 9, type: 32x100G, cost: 180000
+  Node: Transiver, count: 1372, type: 100G, cost: 1372000
+  Fabric total cost: 3222000
+
+Data center fabric with the following topology:
+  User ports count: 8000
+  Oversubscription coeff: 3
+  Fabric with super spines: True
+  Node: Leaf, count: 167, type: 48x25G, cost: 1670000
+  Node: Spine, count: 4, type: 64x100G, cost: 140000
+  Node: Transiver, count: 1342, type: 100G, cost: 1342000
+  Fabric total cost: 3152000
+
+Data center fabric with the following topology:
+  User ports count: 8000
+  Oversubscription coeff: 4
+  Fabric with super spines: True
+  Node: Leaf, count: 167, type: 48x10G, cost: 1670000
+  Node: Spine, count: 4, type: 32x100G, cost: 80000
+  Node: Transiver, count: 674, type: 100G, cost: 674000
+  Fabric total cost: 2424000
+
+Data center fabric with the following topology:
+  User ports count: 8000
+  Oversubscription coeff: 4
+  Fabric with super spines: True
+  Node: Leaf, count: 167, type: 48x10G, cost: 1670000
+  Node: Spine, count: 3, type: 64x100G, cost: 105000
+  Node: Transiver, count: 672, type: 100G, cost: 672000
+  Fabric total cost: 2447000
+
+Data center fabric with the following topology:
+  User ports count: 8000
+  Oversubscription coeff: 4
+  Fabric with super spines: True
+  Node: Leaf, count: 167, type: 48x25G, cost: 1670000
+  Node: Spine, count: 6, type: 32x100G, cost: 120000
+  Node: Transiver, count: 1018, type: 100G, cost: 1018000
+  Fabric total cost: 2808000
+
+Data center fabric with the following topology:
+  User ports count: 8000
+  Oversubscription coeff: 4
+  Fabric with super spines: True
+  Node: Leaf, count: 167, type: 48x25G, cost: 1670000
+  Node: Spine, count: 3, type: 64x100G, cost: 105000
+  Node: Transiver, count: 1006, type: 100G, cost: 1006000
+  Fabric total cost: 2781000
+
+Data center fabric with the following topology:
+  User ports count: 10000
+  Oversubscription coeff: 1
+  Fabric with super spines: True
+  Node: Leaf, count: 209, type: 48x10G, cost: 2090000
+  Node: Spine, count: 13, type: 32x100G, cost: 260000
+  Node: Transiver, count: 2162, type: 100G, cost: 2162000
+  Fabric total cost: 4512000
+
+Data center fabric with the following topology:
+  User ports count: 10000
+  Oversubscription coeff: 1
+  Fabric with super spines: True
+  Node: Leaf, count: 209, type: 48x10G, cost: 2090000
+  Node: Spine, count: 7, type: 64x100G, cost: 245000
+  Node: Transiver, count: 2110, type: 100G, cost: 2110000
+  Fabric total cost: 4445000
+
+Data center fabric with the following topology:
+  User ports count: 10000
+  Oversubscription coeff: 1
+  Fabric with super spines: True
+  Node: Leaf, count: 209, type: 48x25G, cost: 2090000
+  Node: Spine, count: 30, type: 32x100G, cost: 600000
+  Node: Transiver, count: 5416, type: 100G, cost: 5416000
+  Fabric total cost: 8106000
+
+Data center fabric with the following topology:
+  User ports count: 10000
+  Oversubscription coeff: 1
+  Fabric with super spines: True
+  Node: Leaf, count: 209, type: 48x25G, cost: 2090000
+  Node: Spine, count: 15, type: 64x100G, cost: 525000
+  Node: Transiver, count: 5116, type: 100G, cost: 5116000
+  Fabric total cost: 7731000
+
+Data center fabric with the following topology:
+  User ports count: 10000
+  Oversubscription coeff: 2
+  Fabric with super spines: True
+  Node: Leaf, count: 209, type: 48x10G, cost: 2090000
+  Node: Spine, count: 7, type: 32x100G, cost: 140000
+  Node: Transiver, count: 1274, type: 100G, cost: 1274000
+  Fabric total cost: 3504000
+
+Data center fabric with the following topology:
+  User ports count: 10000
+  Oversubscription coeff: 2
+  Fabric with super spines: True
+  Node: Leaf, count: 209, type: 48x10G, cost: 2090000
+  Node: Spine, count: 4, type: 64x100G, cost: 140000
+  Node: Transiver, count: 1260, type: 100G, cost: 1260000
+  Fabric total cost: 3490000
+
+Data center fabric with the following topology:
+  User ports count: 10000
+  Oversubscription coeff: 2
+  Fabric with super spines: True
+  Node: Leaf, count: 209, type: 48x25G, cost: 2090000
+  Node: Spine, count: 15, type: 32x100G, cost: 300000
+  Node: Transiver, count: 2608, type: 100G, cost: 2608000
+  Fabric total cost: 4998000
+
+Data center fabric with the following topology:
+  User ports count: 10000
+  Oversubscription coeff: 2
+  Fabric with super spines: True
+  Node: Leaf, count: 209, type: 48x25G, cost: 2090000
+  Node: Spine, count: 7, type: 64x100G, cost: 245000
+  Node: Transiver, count: 2528, type: 100G, cost: 2528000
+  Fabric total cost: 4863000
+
+Data center fabric with the following topology:
+  User ports count: 10000
+  Oversubscription coeff: 3
+  Fabric with super spines: True
+  Node: Leaf, count: 209, type: 48x10G, cost: 2090000
+  Node: Spine, count: 6, type: 32x100G, cost: 120000
+  Node: Transiver, count: 852, type: 100G, cost: 852000
+  Fabric total cost: 3062000
+
+Data center fabric with the following topology:
+  User ports count: 10000
+  Oversubscription coeff: 3
+  Fabric with super spines: True
+  Node: Leaf, count: 209, type: 48x10G, cost: 2090000
+  Node: Spine, count: 3, type: 64x100G, cost: 105000
+  Node: Transiver, count: 840, type: 100G, cost: 840000
+  Fabric total cost: 3035000
+
+Data center fabric with the following topology:
+  User ports count: 10000
+  Oversubscription coeff: 3
+  Fabric with super spines: True
+  Node: Leaf, count: 209, type: 48x25G, cost: 2090000
+  Node: Spine, count: 10, type: 32x100G, cost: 200000
+  Node: Transiver, count: 1714, type: 100G, cost: 1714000
+  Fabric total cost: 4004000
+
+Data center fabric with the following topology:
+  User ports count: 10000
+  Oversubscription coeff: 3
+  Fabric with super spines: True
+  Node: Leaf, count: 209, type: 48x25G, cost: 2090000
+  Node: Spine, count: 6, type: 64x100G, cost: 210000
+  Node: Transiver, count: 1688, type: 100G, cost: 1688000
+  Fabric total cost: 3988000
+
+Data center fabric with the following topology:
+  User ports count: 10000
+  Oversubscription coeff: 4
+  Fabric with super spines: True
+  Node: Leaf, count: 209, type: 48x10G, cost: 2090000
+  Node: Spine, count: 6, type: 32x100G, cost: 120000
+  Node: Transiver, count: 852, type: 100G, cost: 852000
+  Fabric total cost: 3062000
+
+Data center fabric with the following topology:
+  User ports count: 10000
+  Oversubscription coeff: 4
+  Fabric with super spines: True
+  Node: Leaf, count: 209, type: 48x10G, cost: 2090000
+  Node: Spine, count: 3, type: 64x100G, cost: 105000
+  Node: Transiver, count: 840, type: 100G, cost: 840000
+  Fabric total cost: 3035000
+
+Data center fabric with the following topology:
+  User ports count: 10000
+  Oversubscription coeff: 4
+  Fabric with super spines: True
+  Node: Leaf, count: 209, type: 48x25G, cost: 2090000
+  Node: Spine, count: 7, type: 32x100G, cost: 140000
+  Node: Transiver, count: 1274, type: 100G, cost: 1274000
+  Fabric total cost: 3504000
+
+Data center fabric with the following topology:
+  User ports count: 10000
+  Oversubscription coeff: 4
+  Fabric with super spines: True
+  Node: Leaf, count: 209, type: 48x25G, cost: 2090000
+  Node: Spine, count: 4, type: 64x100G, cost: 140000
+  Node: Transiver, count: 1260, type: 100G, cost: 1260000
+  Fabric total cost: 3490000
+
